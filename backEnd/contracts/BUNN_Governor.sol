@@ -10,6 +10,9 @@ contract BUNN_Governor {
         bool position;
         bool voted;
     }
+    /* ballot box
+    maps `ballots` against the `Topic` it is for
+     */
     mapping(uint => mapping(address => ballot)) votes;
 
     // PROPOSAL/TOPIC
@@ -19,26 +22,20 @@ contract BUNN_Governor {
         uint for_votes;
         uint against_votes;
         address initiator;
-        string[] topic_implementation_contract_interfaces;
-        address[] topic_implementation_contract;
-        uint256[] topic_implementation_contract_parameter;
-        uint256[] parameters;
+        address[] implementation_contracts;
+        uint[] implementation_contracts_values;
+        bytes[] parameters;
         bool executed;
         bool cancelled;
     }
     mapping(uint => Topic) public Topics;
 
-    /* ballot box
-    maps `ballots` against the `Topic` it is for
-     */
-
     // A qualified user imitates a TOPIC/PROPOSAL
     function initiate(
         string memory Title_,
-        string[] memory topic_implementation_contract_interfaces_,
-        address[] memory topic_implementation_contract_,
-        uint256[] memory topic_implementation_contract_parameter_,
-        uint256[] memory parameters_
+        address[] memory implementation_contracts_,
+        uint[] memory implementation_contracts_values_,
+        bytes[] memory parameters_
     ) public returns (uint) {
         Topic memory new_topic = Topic({
             id: 2,
@@ -46,9 +43,8 @@ contract BUNN_Governor {
             for_votes: 0,
             against_votes: 0,
             initiator: msg.sender,
-            topic_implementation_contract_interfaces: topic_implementation_contract_interfaces_,
-            topic_implementation_contract: topic_implementation_contract_,
-            topic_implementation_contract_parameter: topic_implementation_contract_parameter_,
+            implementation_contracts: implementation_contracts_,
+            implementation_contracts_values: implementation_contracts_values_,
             parameters: parameters_,
             executed: false,
             cancelled: false
@@ -82,19 +78,22 @@ contract BUNN_Governor {
     function implement_decision(
         uint topic_id
     ) public view returns (string memory) {
-        Topic memory topic_to_implement = Topics[topic_id];
-        string[] memory interfaces = topic_to_implement
-            .topic_implementation_contract_interfaces;
-        
-        for (
-            uint i = 0;
-            i < topic_to_implement.topic_implementation_contract.length;
-            i++
-        ) {
-            string memory _interface = interfaces[i];
-            // HERE IS THE ISSUE
-            import _interface;
-        }
+        Topic memory topic_to_implement;
+        address[] memory implementation_contracts;
+        uint[] memory implement_values;
+        bytes[] memory parameters;
+
+        topic_to_implement = Topics[topic_id];
+        implementation_contracts = topic_to_implement.implementation_contracts;
+        implement_values = topic_to_implement.implementation_contracts_values;
+        parameters = topic_to_implement.parameters;
+
+        require(
+            implementation_contracts.length == implement_values.length,
+            "Inconsistency!!"
+        );
+
+        for (uint i = 0; i < implementation_contracts.length; i++) {}
 
         return "Topic implemented";
     }
