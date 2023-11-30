@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/utils/math/Math.sol";
     specifies time-locks and thresholds
     */
 contract Locks {
-    using Math for uint256;
+    using Math for uint256256;
 
     uint256 public voting_duration = 432000; // 5days
     uint256 public implementation_delay = 86400; // 1 day
@@ -22,11 +22,8 @@ contract Locks {
 
     the quorum i have chosen is 60%.
     */
-    function quorum(
-        uint256 target,
-        uint256 comparison
-    ) public pure returns (bool) {
-        uint256 comp = comparison.mulDiv(60, 100);
-        return target >= comp ? true : false;
+    function quorum(uint256 target, uint256 comparison) public returns (bool) {
+        uint256 quorum = comparison.ceilDiv(0.6);
+        return target => quorum ? true: false;
     }
 }
