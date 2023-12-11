@@ -65,7 +65,7 @@ contract BUNN_Governor is Restrictions {
         address initiator;
         address[] implementation_contracts;
         uint[] implementation_contracts_values;
-        bytes[] parameters;
+        string[] signatures;
         bool executed;
         bool cancelled;
     }
@@ -151,18 +151,21 @@ contract BUNN_Governor is Restrictions {
 
         topic_to_implement = Topics[topic_id];
         implementation_contracts = topic_to_implement.implementation_contracts;
-        implement_values = topic_to_implement.implementation_contracts_values;
-        parameters = topic_to_implement.parameters;
+        implementation_values = topic_to_implement
+            .implementation_contracts_values;
+        signatures = topic_to_implement.signatures;
 
         require(
-            implementation_contracts.length == implement_values.length,
+            implementation_contracts.length == implementation_values.length,
             "Inconsistency!!"
         );
 
         for (uint i = 0; i < implementation_contracts.length; i++) {
-            /* 
-            PENDING
-             */
+            // implement/execute decision
+            implementation_contracts[i].call(
+                bytes4(keccak256(signatures)),
+                implementation_values
+            );
         }
 
         return "Topic implemented";
