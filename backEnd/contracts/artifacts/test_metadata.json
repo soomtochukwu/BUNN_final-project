@@ -1,0 +1,45 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"backEnd/contracts/BUNN_Governor_Implementation.sol": "test"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"backEnd/contracts/BUNN_Governor_Implementation.sol": {
+			"keccak256": "0x7eafc6a31541bb367956b7c5eee200258fac7956ea9cca464d62baac22181923",
+			"license": "SEE LICENSE IN LICENSE",
+			"urls": [
+				"bzz-raw://0720671b80dcf13ba23e13f4d047e9e9320907ca5f6995f802a2eae9ea1927d6",
+				"dweb:/ipfs/QmZUfPMsRqMjs2vqfKyB8VQ4WwxmMQPprUJjS5LnqpCdhj"
+			]
+		}
+	},
+	"version": 1
+}

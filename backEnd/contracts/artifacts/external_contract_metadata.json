@@ -1,0 +1,77 @@
+{
+	"compiler": {
+		"version": "0.8.23+commit.f704f362"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "arg",
+						"type": "uint256"
+					}
+				],
+				"name": "alterState",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "state",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"backEnd/contracts/BUNN_Governor_Implementation.sol": "external_contract"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"backEnd/contracts/BUNN_Governor_Implementation.sol": {
+			"keccak256": "0xde778f720a13c1461769d5e6daab429669f111dac39f2dd91f52af836f93d4b6",
+			"license": "SEE LICENSE IN LICENSE",
+			"urls": [
+				"bzz-raw://26d8d79f58d2aa75ce57cb0bcc2a345e7c7cad02ace5630ecfc72f44dd82d8ab",
+				"dweb:/ipfs/QmcwssCdPxm8o77ux7DriTpTNkHx5GgCfWoLGcaWtcf5Uy"
+			]
+		}
+	},
+	"version": 1
+}
