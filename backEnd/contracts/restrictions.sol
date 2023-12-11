@@ -13,7 +13,6 @@ contract Restrictions {
     uint256 public implementation_delay = 86400; // 1 day
 
     // uint256 private quorum = 50%;
-`
     constructor() {}
 
     /* 

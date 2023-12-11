@@ -4,7 +4,7 @@ pragma solidity ^0.8.19;
 import "./restrictions.sol";
 import "./utility_token-interface.sol";
 
-contract BUNN_Governor is Restrictions {
+contract bunnG_test is Restrictions {
     /**************************
     Section 0: External resources 
 
@@ -44,7 +44,7 @@ contract BUNN_Governor is Restrictions {
     */
     struct ballot {
         address voter;
-        uint position; // 0=false, 1=true.
+        bool position;
         bool voted;
     }
     mapping(uint => mapping(address => ballot)) votes;
@@ -66,10 +66,20 @@ contract BUNN_Governor is Restrictions {
         address[] implementation_contracts;
         uint[] implementation_contracts_values;
         string[] signatures;
+        uint256 start_time;
         bool executed;
         bool cancelled;
     }
+    uint public counter = 1;
     mapping(uint => Topic) public Topics;
+
+    /* *************************
+    Section B: Events
+    
+    **************************/
+    event decision_implemented(uint topic_acted_on,bool implemented, bytes data);
+    event vote_cast(address indexed participant, uint topic_acted_on, bool position);
+    event proposal_made(uint topic_acted_on, address indexed proposer);
 
     /* ************************* */
     constructor(address UTA) {
@@ -77,7 +87,7 @@ contract BUNN_Governor is Restrictions {
     }
 
     /*************************
-    Section B: Functions
+    Section C: Functions
     *************************/
 
     // A qualified user initiates a TOPIC/PROPOSAL
@@ -85,26 +95,28 @@ contract BUNN_Governor is Restrictions {
         string memory Title_,
         address[] memory implementation_contracts_,
         uint[] memory implementation_contracts_values_,
-        bytes[] memory parameters_
-    ) public returns (uint) {
+        string[] memory signatures_
+    ) public {
         Topic memory new_topic = Topic({
-            id: 2,
+            id: counter,
             Title: Title_,
             for_votes: 0,
             against_votes: 0,
             initiator: msg.sender,
             implementation_contracts: implementation_contracts_,
             implementation_contracts_values: implementation_contracts_values_,
-            parameters: parameters_,
+            signatures: signatures_,
+            start_time: block.timestamp,
             executed: false,
             cancelled: false
         });
-        Topics[new_topic.id] = new_topic;
-        return new_topic.id;
+        Topics[counter] = new_topic;
+        emit proposal_made(counter, msg.sender);
+        counter++;
     }
 
     // A qualified user casts their vote(s)
-    function cast_vote(uint topic_id, uint position_) public {
+    function cast_vote(uint topic_id, bool position_) public {
         Topic memory topic = Topics[topic_id];
         ballot memory casted_vote = ballot({
             voter: msg.sender,
@@ -112,42 +124,43 @@ contract BUNN_Governor is Restrictions {
             voted: true
         });
 
+        /*sanity checks*/
         IUTILITY_TOKEN BUNN = IUTILITY_TOKEN(utility_token_address);
 
-        /*sanity checks*/
-
         // check if the voting period has expired
-        require(block.timestamp < end_time, "Voting duration exceeded");
+        uint256 end_time = voting_duration + topic.start_time;
+        require(end_time > block.timestamp , "Voting period has elapsed ");
+        
         // ensure that the voter has enough tokens
         require(
             BUNN.balanceOf(msg.sender) > 0,
             "YOU MUST POSSES TOKENs TO BE AN ELIGIBLE VOTER"
         );
 
+        uint256 total_votes = topic.for_votes + topic.against_votes;
+        require(quorum(topic.for_votes, total_votes), "Threshold not exceeded");
+
         // map users vote against the topic they voted for
         // it is supposed to track users who participated in the decision
         votes[topic_id][msg.sender] = casted_vote;
-
-        uint256 end_time = voting_duration + block.timestamp;
-        // check if the voting period has expired
-        uint256 total_votes = topic.for_votes + topic.against_votes;
-        require(quorum(topic.for_votes, total_votes), "Threshold not met");
 
         if (position_) {
             topic.for_votes++;
         } else {
             topic.against_votes++;
         }
+
+        emit vote_cast(msg.sender, topic.id, position_);
     }
 
     // execute/implement a decision or topic is it passed the voting process
     function implement_decision(
         uint topic_id
-    ) public view returns (string memory) {
+    ) public payable returns (string memory) {
         Topic memory topic_to_implement;
         address[] memory implementation_contracts;
-        uint[] memory implement_values;
-        bytes[] memory parameters;
+        uint[] memory implementation_values;
+        string[] memory signatures;
 
         topic_to_implement = Topics[topic_id];
         implementation_contracts = topic_to_implement.implementation_contracts;
@@ -162,18 +175,23 @@ contract BUNN_Governor is Restrictions {
 
         for (uint i = 0; i < implementation_contracts.length; i++) {
             // implement/execute decision
-            implementation_contracts[i].call(
-                bytes4(keccak256(signatures)),
-                implementation_values
-            );
+            //  bytes memory callData = abi.encodePacked(
+            //     bytes4(keccak256(bytes(signatures[0]))),
+            //     implementation_values
+            // );
+
+            (bool success, bytes memory returned_data) = implementation_contracts[0]
+            .call(abi.encodeWithSignature(signatures[0], implementation_values));
+
+            require(success, "FAILED TO IMPLEMENT DECISION");
+
+            emit decision_implemented(topic_to_implement.id, success, returned_data);
         }
 
         return "Topic implemented";
     }
 
     /*************************
-    Section C: Maintenance/Upgrade
+    Section D: Maintenance/Upgrade
     *************************/
-
-    function upgrade_implement_decision() public returns () {}
 }
