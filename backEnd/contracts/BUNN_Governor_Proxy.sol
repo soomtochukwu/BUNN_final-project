@@ -8,7 +8,7 @@ contract bunnG_test is Restrictions {
     /**************************
     Section 0: External resources 
 
-    **************************/
+    *************************/
     address public utility_token_address;
 
     /**************************
@@ -27,11 +27,11 @@ contract bunnG_test is Restrictions {
     */
     struct Member {
         string name; // if necessary
-        address _address;
+        bool belongs;
         uint256 delegated_tokens; // if necessary
         // other attributes
     }
-    mapping(address => Member) Members;
+    mapping(address => Member) public Members;
 
     /* 
     Section A2: defines the voting structure.
@@ -47,7 +47,7 @@ contract bunnG_test is Restrictions {
         bool position;
         bool voted;
     }
-    mapping(uint => mapping(address => ballot)) votes;
+    mapping(uint => mapping(address => ballot)) public votes;
 
     /*
     Section A3: defines how "Topics" of "Proposals" is represented.
@@ -77,8 +77,16 @@ contract bunnG_test is Restrictions {
     Section B: Events
     
     **************************/
-    event decision_implemented(uint topic_acted_on,bool implemented, bytes data);
-    event vote_cast(address indexed participant, uint topic_acted_on, bool position);
+    event decision_implemented(
+        uint topic_acted_on,
+        bool implemented,
+        bytes data
+    );
+    event vote_cast(
+        address indexed participant,
+        uint topic_acted_on,
+        bool position
+    );
     event proposal_made(uint topic_acted_on, address indexed proposer);
 
     /* ************************* */
@@ -91,28 +99,40 @@ contract bunnG_test is Restrictions {
     *************************/
 
     // A qualified user initiates a TOPIC/PROPOSAL
+
+    function register(string memory name_, uint256 d_tokens) public {
+        Members[msg.sender] = Member({
+            name: name_,
+            belongs: true,
+            delegated_tokens: d_tokens
+        });
+    }
+
     function initiate_topic(
         string memory Title_,
-        address[] memory implementation_contracts_,
-        uint[] memory implementation_contracts_values_,
-        string[] memory signatures_
+        address[] memory implementation_contracts,
+        uint[] memory implementation_contracts_values,
+        string[] memory signatures
     ) public {
+        /* sanity checks */
+        require(Members[msg.sender].belongs, "NOT A MEMBER");
+
         Topic memory new_topic = Topic({
             id: counter,
             Title: Title_,
             for_votes: 0,
             against_votes: 0,
             initiator: msg.sender,
-            implementation_contracts: implementation_contracts_,
-            implementation_contracts_values: implementation_contracts_values_,
-            signatures: signatures_,
+            implementation_contracts: implementation_contracts,
+            implementation_contracts_values: implementation_contracts_values,
+            signatures: signatures,
             start_time: block.timestamp,
             executed: false,
             cancelled: false
         });
         Topics[counter] = new_topic;
+        counter = counter + 1;
         emit proposal_made(counter, msg.sender);
-        counter++;
     }
 
     // A qualified user casts their vote(s)
@@ -126,29 +146,27 @@ contract bunnG_test is Restrictions {
 
         /*sanity checks*/
         IUTILITY_TOKEN BUNN = IUTILITY_TOKEN(utility_token_address);
+        // check if sender is a registered user
+        require(Members[msg.sender].belongs, "NOT A MEMBER");
 
         // check if the voting period has expired
         uint256 end_time = voting_duration + topic.start_time;
-        require(end_time > block.timestamp , "Voting period has elapsed ");
-        
+        require(end_time > block.timestamp, "Voting period has elapsed ");
+
         // ensure that the voter has enough tokens
         require(
             BUNN.balanceOf(msg.sender) > 0,
             "YOU MUST POSSES TOKENs TO BE AN ELIGIBLE VOTER"
         );
-
-        uint256 total_votes = topic.for_votes + topic.against_votes;
-        require(quorum(topic.for_votes, total_votes), "Threshold not exceeded");
+        if (position_ == true) {
+            topic.for_votes = topic.for_votes + 1;
+        } else {
+            topic.against_votes = topic.against_votes + 1;
+        }
 
         // map users vote against the topic they voted for
         // it is supposed to track users who participated in the decision
         votes[topic_id][msg.sender] = casted_vote;
-
-        if (position_) {
-            topic.for_votes++;
-        } else {
-            topic.against_votes++;
-        }
 
         emit vote_cast(msg.sender, topic.id, position_);
     }
@@ -168,6 +186,11 @@ contract bunnG_test is Restrictions {
             .implementation_contracts_values;
         signatures = topic_to_implement.signatures;
 
+        /* sanity checks */
+        //check the quorum
+        /* uint256 total_votes = topic_to_implement.for_votes + topic_to_implement.against_votes;
+        require(quorum(topic_to_implement.for_votes, total_votes), "Threshold not exceeded"); */
+
         require(
             implementation_contracts.length == implementation_values.length,
             "Inconsistency!!"
@@ -180,12 +203,23 @@ contract bunnG_test is Restrictions {
             //     implementation_values
             // );
 
-            (bool success, bytes memory returned_data) = implementation_contracts[0]
-            .call(abi.encodeWithSignature(signatures[0], implementation_values));
+            (
+                bool success,
+                bytes memory returned_data
+            ) = implementation_contracts[0].call(
+                    abi.encodeWithSignature(
+                        signatures[0],
+                        implementation_values
+                    )
+                );
 
             require(success, "FAILED TO IMPLEMENT DECISION");
 
-            emit decision_implemented(topic_to_implement.id, success, returned_data);
+            emit decision_implemented(
+                topic_to_implement.id,
+                success,
+                returned_data
+            );
         }
 
         return "Topic implemented";

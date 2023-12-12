@@ -1,7 +1,7 @@
 // Sources flattened with hardhat v2.17.3 https://hardhat.org
 
 // SPDX-License-Identifier: MIT AND SEE
-
+//
 // File @openzeppelin/contracts/token/ERC20/IERC20.sol@v4.9.3
 
 // Original license: SPDX_License_Identifier: MIT
@@ -25,7 +25,11 @@ interface IERC20 {
      * @dev Emitted when the allowance of a `spender` for an `owner` is set by
      * a call to {approve}. `value` is the new allowance.
      */
-    event Approval(address indexed owner, address indexed spender, uint256 value);
+    event Approval(
+        address indexed owner,
+        address indexed spender,
+        uint256 value
+    );
 
     /**
      * @dev Returns the amount of tokens in existence.
@@ -53,7 +57,10 @@ interface IERC20 {
      *
      * This value changes when {approve} or {transferFrom} are called.
      */
-    function allowance(address owner, address spender) external view returns (uint256);
+    function allowance(
+        address owner,
+        address spender
+    ) external view returns (uint256);
 
     /**
      * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.
@@ -80,9 +87,12 @@ interface IERC20 {
      *
      * Emits a {Transfer} event.
      */
-    function transferFrom(address from, address to, uint256 amount) external returns (bool);
+    function transferFrom(
+        address from,
+        address to,
+        uint256 amount
+    ) external returns (bool);
 }
-
 
 // File @openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol@v4.9.3
 
@@ -113,7 +123,6 @@ interface IERC20Metadata is IERC20 {
     function decimals() external view returns (uint8);
 }
 
-
 // File @openzeppelin/contracts/utils/Context.sol@v4.9.3
 
 // Original license: SPDX_License_Identifier: MIT
@@ -141,15 +150,12 @@ abstract contract Context {
     }
 }
 
-
 // File @openzeppelin/contracts/token/ERC20/ERC20.sol@v4.9.3
 
 // Original license: SPDX_License_Identifier: MIT
 // OpenZeppelin Contracts (last updated v4.9.0) (token/ERC20/ERC20.sol)
 
 pragma solidity ^0.8.19;
-
-
 
 /**
  * @dev Implementation of the {IERC20} interface.
@@ -242,7 +248,9 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
     /**
      * @dev See {IERC20-balanceOf}.
      */
-    function balanceOf(address account) public view virtual override returns (uint256) {
+    function balanceOf(
+        address account
+    ) public view virtual override returns (uint256) {
         return _balances[account];
     }
 
@@ -254,7 +262,10 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * - `to` cannot be the zero address.
      * - the caller must have a balance of at least `amount`.
      */
-    function transfer(address to, uint256 amount) public virtual override returns (bool) {
+    function transfer(
+        address to,
+        uint256 amount
+    ) public virtual override returns (bool) {
         address owner = _msgSender();
         _transfer(owner, to, amount);
         return true;
@@ -263,7 +274,10 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
     /**
      * @dev See {IERC20-allowance}.
      */
-    function allowance(address owner, address spender) public view virtual override returns (uint256) {
+    function allowance(
+        address owner,
+        address spender
+    ) public view virtual override returns (uint256) {
         return _allowances[owner][spender];
     }
 
@@ -277,7 +291,10 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      *
      * - `spender` cannot be the zero address.
      */
-    function approve(address spender, uint256 amount) public virtual override returns (bool) {
+    function approve(
+        address spender,
+        uint256 amount
+    ) public virtual override returns (bool) {
         address owner = _msgSender();
         _approve(owner, spender, amount);
         return true;
@@ -299,7 +316,11 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * - the caller must have allowance for ``from``'s tokens of at least
      * `amount`.
      */
-    function transferFrom(address from, address to, uint256 amount) public virtual override returns (bool) {
+    function transferFrom(
+        address from,
+        address to,
+        uint256 amount
+    ) public virtual override returns (bool) {
         address spender = _msgSender();
         _spendAllowance(from, spender, amount);
         _transfer(from, to, amount);
@@ -318,7 +339,10 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      *
      * - `spender` cannot be the zero address.
      */
-    function increaseAllowance(address spender, uint256 addedValue) public virtual returns (bool) {
+    function increaseAllowance(
+        address spender,
+        uint256 addedValue
+    ) public virtual returns (bool) {
         address owner = _msgSender();
         _approve(owner, spender, allowance(owner, spender) + addedValue);
         return true;
@@ -338,10 +362,16 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * - `spender` must have allowance for the caller of at least
      * `subtractedValue`.
      */
-    function decreaseAllowance(address spender, uint256 subtractedValue) public virtual returns (bool) {
+    function decreaseAllowance(
+        address spender,
+        uint256 subtractedValue
+    ) public virtual returns (bool) {
         address owner = _msgSender();
         uint256 currentAllowance = allowance(owner, spender);
-        require(currentAllowance >= subtractedValue, "ERC20: decreased allowance below zero");
+        require(
+            currentAllowance >= subtractedValue,
+            "ERC20: decreased allowance below zero"
+        );
         unchecked {
             _approve(owner, spender, currentAllowance - subtractedValue);
         }
@@ -363,14 +393,21 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * - `to` cannot be the zero address.
      * - `from` must have a balance of at least `amount`.
      */
-    function _transfer(address from, address to, uint256 amount) internal virtual {
+    function _transfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal virtual {
         require(from != address(0), "ERC20: transfer from the zero address");
         require(to != address(0), "ERC20: transfer to the zero address");
 
         _beforeTokenTransfer(from, to, amount);
 
         uint256 fromBalance = _balances[from];
-        require(fromBalance >= amount, "ERC20: transfer amount exceeds balance");
+        require(
+            fromBalance >= amount,
+            "ERC20: transfer amount exceeds balance"
+        );
         unchecked {
             _balances[from] = fromBalance - amount;
             // Overflow not possible: the sum of all balances is capped by totalSupply, and the sum is preserved by
@@ -449,7 +486,11 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      * - `owner` cannot be the zero address.
      * - `spender` cannot be the zero address.
      */
-    function _approve(address owner, address spender, uint256 amount) internal virtual {
+    function _approve(
+        address owner,
+        address spender,
+        uint256 amount
+    ) internal virtual {
         require(owner != address(0), "ERC20: approve from the zero address");
         require(spender != address(0), "ERC20: approve to the zero address");
 
@@ -465,10 +506,17 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      *
      * Might emit an {Approval} event.
      */
-    function _spendAllowance(address owner, address spender, uint256 amount) internal virtual {
+    function _spendAllowance(
+        address owner,
+        address spender,
+        uint256 amount
+    ) internal virtual {
         uint256 currentAllowance = allowance(owner, spender);
         if (currentAllowance != type(uint256).max) {
-            require(currentAllowance >= amount, "ERC20: insufficient allowance");
+            require(
+                currentAllowance >= amount,
+                "ERC20: insufficient allowance"
+            );
             unchecked {
                 _approve(owner, spender, currentAllowance - amount);
             }
@@ -489,7 +537,11 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      *
      * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
      */
-    function _beforeTokenTransfer(address from, address to, uint256 amount) internal virtual {}
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal virtual {}
 
     /**
      * @dev Hook that is called after any transfer of tokens. This includes
@@ -505,9 +557,12 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
      *
      * To learn more about hooks, head to xref:ROOT:extending-contracts.adoc#using-hooks[Using Hooks].
      */
-    function _afterTokenTransfer(address from, address to, uint256 amount) internal virtual {}
+    function _afterTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal virtual {}
 }
-
 
 // File contracts/ico-token.sol
 

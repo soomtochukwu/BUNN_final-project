@@ -1,0 +1,87 @@
+{
+  "address": "0x8C8D92779e73edEa4ABf5e6E3Bc6736e09Ad31f5",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "arg",
+          "type": "uint256"
+        }
+      ],
+      "name": "alterState",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "state",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x85c0894698d059ec65b76218af477d516d2dcd842f6321b9a175c53ea410d098",
+  "receipt": {
+    "to": null,
+    "from": "0x49f2451AbEe35B261bB01f9d0CDC49f8f8df6E3f",
+    "contractAddress": "0x8C8D92779e73edEa4ABf5e6E3Bc6736e09Ad31f5",
+    "transactionIndex": 15,
+    "gasUsed": "119705",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x23de3d0d16746e350d9388e11d821fcb26b339e86ff1140fd89583bda8025af3",
+    "transactionHash": "0x85c0894698d059ec65b76218af477d516d2dcd842f6321b9a175c53ea410d098",
+    "logs": [],
+    "blockNumber": 4870590,
+    "cumulativeGasUsed": "1212120",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "ff7b00feb3eb45b84f457e1d393cc633",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"arg\",\"type\":\"uint256\"}],\"name\":\"alterState\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"state\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/BUNN_Governor_Implementation.sol\":\"external_contract\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/BUNN_Governor_Implementation.sol\":{\"content\":\"// SPDX-License-Identifier: SEE LICENSE IN LICENSE\\npragma solidity ^0.8.19;\\n\\ncontract external_contract {\\n    uint public state;\\n\\n    constructor() {}\\n\\n    //functions signature ==> \\\"function alterState(uint)\\\"\\n    function alterState(uint arg) public {\\n        state = arg;\\n    }\\n}\\n\",\"keccak256\":\"0xf99a2a36d12bdb52bf15c6906843a1ca8d9dde5bf7a543413e527e412a72644f\",\"license\":\"SEE LICENSE IN LICENSE\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610133806100206000396000f3fe6080604052348015600f57600080fd5b506004361060325760003560e01c8063c19d93fb146037578063fcf180ee146051575b600080fd5b603d6069565b604051604891906090565b60405180910390f35b606760048036038101906063919060d5565b606f565b005b60005481565b8060008190555050565b6000819050919050565b608a816079565b82525050565b600060208201905060a360008301846083565b92915050565b600080fd5b60b5816079565b811460bf57600080fd5b50565b60008135905060cf8160ae565b92915050565b60006020828403121560e85760e760a9565b5b600060f48482850160c2565b9150509291505056fea264697066735822122095b5a222ffa071d575ce17ac8f62699fa193a0fdd61eb072fc146299e2fdb29964736f6c63430008140033",
+  "deployedBytecode": "0x6080604052348015600f57600080fd5b506004361060325760003560e01c8063c19d93fb146037578063fcf180ee146051575b600080fd5b603d6069565b604051604891906090565b60405180910390f35b606760048036038101906063919060d5565b606f565b005b60005481565b8060008190555050565b6000819050919050565b608a816079565b82525050565b600060208201905060a360008301846083565b92915050565b600080fd5b60b5816079565b811460bf57600080fd5b50565b60008135905060cf8160ae565b92915050565b60006020828403121560e85760e760a9565b5b600060f48482850160c2565b9150509291505056fea264697066735822122095b5a222ffa071d575ce17ac8f62699fa193a0fdd61eb072fc146299e2fdb29964736f6c63430008140033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 1057,
+        "contract": "contracts/BUNN_Governor_Implementation.sol:external_contract",
+        "label": "state",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
