@@ -130,7 +130,15 @@ contract bunnG_test is Restrictions {
             executed: false,
             cancelled: false
         });
+
         Topics[counter] = new_topic;
+        for (uint i=0; i<=implementation_contracts.length;i++) 
+        {
+            Topics[counter].implementation_contracts.push(implementation_contracts[i]);
+            Topics[counter].implementation_contracts_values.push(implementation_contracts_values[i]);
+            Topics[counter].signatures.push(signatures[i]);
+        }
+
         counter = counter + 1;
         emit proposal_made(counter, msg.sender);
     }
