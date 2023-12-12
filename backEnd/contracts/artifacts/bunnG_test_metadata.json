@@ -93,6 +93,35 @@
 			{
 				"inputs": [
 					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "Members",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "belongs",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "delegated_tokens",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
@@ -216,17 +245,17 @@
 					},
 					{
 						"internalType": "address[]",
-						"name": "implementation_contracts_",
+						"name": "implementation_contracts",
 						"type": "address[]"
 					},
 					{
 						"internalType": "uint256[]",
-						"name": "implementation_contracts_values_",
+						"name": "implementation_contracts_values",
 						"type": "uint256[]"
 					},
 					{
 						"internalType": "string[]",
-						"name": "signatures_",
+						"name": "signatures",
 						"type": "string[]"
 					}
 				],
@@ -260,6 +289,24 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "name_",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "d_tokens",
+						"type": "uint256"
+					}
+				],
+				"name": "register",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "utility_token_address",
 				"outputs": [
@@ -267,6 +314,40 @@
 						"internalType": "address",
 						"name": "",
 						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "votes",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "voter",
+						"type": "address"
+					},
+					{
+						"internalType": "bool",
+						"name": "position",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "voted",
+						"type": "bool"
 					}
 				],
 				"stateMutability": "view",
@@ -329,11 +410,11 @@
 			]
 		},
 		"backEnd/contracts/BUNN_Governor_Proxy.sol": {
-			"keccak256": "0x49bf075dfac9714d925d01f0bc7177f1d19a406b90c840d6e73cbd572d1c5868",
+			"keccak256": "0x2cf4b967247b134bedffa6e6a420bb40f0bc2808dc6a4719049aa2dd7e94decb",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://902092c6695167a2cbbf39fbc6baa731193367c05a8122636ff1575e7cb100e2",
-				"dweb:/ipfs/QmYCgenhVWgfq7VnSvvKdPyxt6eaT6adyLzYqPtSx5816c"
+				"bzz-raw://af04cbe8d88d06b3914c18769f18b99ba135354d885c30e6be49b0a984a88bbf",
+				"dweb:/ipfs/QmR8Sa9DpodELabDGjZ3ou26jpYy3B4katuzjUQDsbJFqG"
 			]
 		},
 		"backEnd/contracts/restrictions.sol": {
