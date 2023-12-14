@@ -10,6 +10,7 @@ contract bunnG_test is Restrictions {
 
     *************************/
     address public utility_token_address;
+    uint256 public returned;
 
     /**************************
     Section A: State Variables 
@@ -27,7 +28,7 @@ contract bunnG_test is Restrictions {
     struct Member {
         string name; // if necessary
         bool belongs;
-        uint256 delegated_tokens; // if necessary
+        /* uint delegated_tokens;*/ // if necessary
         // other attributes
     }
     mapping(address => Member) public Members;
@@ -62,9 +63,9 @@ contract bunnG_test is Restrictions {
         uint for_votes;
         uint against_votes;
         address initiator;
-        address[] implementation_contracts;
-        uint[] implementation_contracts_values;
-        string[] signatures;
+        address implementation_contract;
+        uint256 implementation_contract_value;
+        string signature;
         uint256 start_time;
         bool executed;
         bool cancelled;
@@ -97,20 +98,20 @@ contract bunnG_test is Restrictions {
     Section C: Functions
     *************************/
 
-    function register(string memory name_, uint256 d_tokens) public {
+    function register(string memory name_/* , uint256 d_tokens */) public {
         Members[msg.sender] = Member({
             name: name_,
-            belongs: true,
-            delegated_tokens: d_tokens
+            belongs: true/* ,
+            delegated_tokens: d_tokens */
         });
     }
 
     // A qualified user initiates a TOPIC/PROPOSAL
     function initiate_topic(
         string memory Title_,
-        address[] memory implementation_contracts,
-        uint[] memory implementation_contracts_values,
-        string[] memory signatures
+        address  implementation_contracts,
+        uint  implementation_contracts_values,
+        string memory signatures
     ) public {
         /* sanity checks */
         require(Members[msg.sender].belongs, "NOT A MEMBER");
@@ -121,24 +122,15 @@ contract bunnG_test is Restrictions {
             for_votes: 0,
             against_votes: 0,
             initiator: msg.sender,
-            implementation_contracts: implementation_contracts,
-            implementation_contracts_values: implementation_contracts_values,
-            signatures: signatures,
+            implementation_contract: implementation_contracts,
+            implementation_contract_value: implementation_contracts_values,
+            signature: signatures,
             start_time: block.timestamp,
             executed: false,
             cancelled: false
         });
 
-        Topics[counter] = new_topic;
-        for (uint i = 0; i <= implementation_contracts.length; i++) {
-            Topics[counter].implementation_contracts.push(
-                implementation_contracts[i]
-            );
-            Topics[counter].implementation_contracts_values.push(
-                implementation_contracts_values[i]
-            );
-            Topics[counter].signatures.push(signatures[i]);
-        }
+        Topics[new_topic.id] = new_topic;
 
         counter = counter + 1;
         emit proposal_made(counter, msg.sender);
@@ -183,55 +175,28 @@ contract bunnG_test is Restrictions {
     // execute/implement a decision or topic is it passed the voting process
     function implement_decision(
         uint topic_id
-    ) public payable returns (string memory) {
+    ) public payable {
         Topic memory topic_to_implement;
-        address[] memory implementation_contracts;
-        uint[] memory implementation_values;
-        string[] memory signatures;
+        address implementation_contract;
+        uint256 implementation_values;
+        string memory signature;
 
         topic_to_implement = Topics[topic_id];
-        implementation_contracts = topic_to_implement.implementation_contracts;
-        implementation_values = topic_to_implement
-            .implementation_contracts_values;
-        signatures = topic_to_implement.signatures;
+        implementation_contract = topic_to_implement.implementation_contract;
+        implementation_values = topic_to_implement.implementation_contract_value;
+        signature = topic_to_implement.signature;
 
         /* sanity checks */
         //check the quorum
+       
         /* uint256 total_votes = topic_to_implement.for_votes + topic_to_implement.against_votes;
         require(quorum(topic_to_implement.for_votes, total_votes), "Threshold not exceeded"); */
 
-        require(
-            implementation_contracts.length == implementation_values.length,
-            "Inconsistency!!"
-        );
+        (bool success,bytes memory returned_data) = implementation_contract.call{value: msg.value}(abi.encodeWithSignature(signature, uint256(implementation_values)));
 
-        for (uint i = 0; i < implementation_contracts.length; i++) {
-            // implement/execute decision
-            //  bytes memory callData = abi.encodePacked(
-            //     bytes4(keccak256(bytes(signatures[0]))),
-            //     implementation_values
-            // );
+        require(success, "FAILED TO IMPLEMENT");
 
-            (
-                bool success,
-                bytes memory returned_data
-            ) = implementation_contracts[0].call(
-                    abi.encodeWithSignature(
-                        signatures[0],
-                        implementation_values
-                    )
-                );
-
-            require(success, "FAILED TO IMPLEMENT DECISION");
-
-            emit decision_implemented(
-                topic_to_implement.id,
-                success,
-                returned_data
-            );
-        }
-
-        return "Topic implemented";
+        returned = abi.decode(returned_data, (uint256));
     }
 
     /*************************

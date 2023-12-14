@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.23+commit.f704f362"
+		"version": "0.8.22+commit.4fc1097e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -19,13 +19,45 @@
 					}
 				],
 				"name": "alterState",
-				"outputs": [],
-				"stateMutability": "nonpayable",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "balance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
 				"inputs": [],
 				"name": "state",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "val",
 				"outputs": [
 					{
 						"internalType": "uint256",
@@ -65,11 +97,11 @@
 	},
 	"sources": {
 		"backEnd/contracts/BUNN_Governor_Implementation.sol": {
-			"keccak256": "0xf99a2a36d12bdb52bf15c6906843a1ca8d9dde5bf7a543413e527e412a72644f",
+			"keccak256": "0xf5222025c119e20dc6abcb7762c66a20a5ce4144af8811d3c090616175c5cb22",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://abb121b9d2d83cdaff75e1fbef9666a4c28342c2758da89cf93a5af19718848e",
-				"dweb:/ipfs/QmR9MhwHKD71rMyrzU2gm79QEZkbtCyCqP584AU9SkLetE"
+				"bzz-raw://6eeed4dbc02e5305360e9e976812bb3b2f5a8b8226f5c38f5a20156f978fcb52",
+				"dweb:/ipfs/QmVLU2jneKq9Yvbrd5ie4su3DnAg8hi1SZmqodAR83woRK"
 			]
 		}
 	},
