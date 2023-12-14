@@ -6,6 +6,7 @@ require("dotenv").config();
 
 module.exports = async ({ getNamedAccounts, deployments }) => {
     // let BUNN_DAO_test;
+    console.log("")
     const
         { deployer } = await getNamedAccounts(),
         { deploy } = await deployments,

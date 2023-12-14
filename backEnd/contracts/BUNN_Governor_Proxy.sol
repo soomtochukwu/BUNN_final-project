@@ -18,8 +18,7 @@ contract bunnG_test is Restrictions {
     /*
     Section A1: defines how members are represented.
 
-    After acquiring said token, one "automatically" becomes a
-    member by voting. ***MORE DELEGATIONS ON THIS LATER***
+    ***MORE DELEGATIONS ON THIS LATER***
     A member is represented as `Member`.
     `Members` maps their address to `Member`.
 
@@ -60,8 +59,8 @@ contract bunnG_test is Restrictions {
     struct Topic {
         uint id;
         string Title;
-        uint256 for_votes;
-        uint256 against_votes;
+        uint for_votes;
+        uint against_votes;
         address initiator;
         address[] implementation_contracts;
         uint[] implementation_contracts_values;
@@ -98,8 +97,6 @@ contract bunnG_test is Restrictions {
     Section C: Functions
     *************************/
 
-    // A qualified user initiates a TOPIC/PROPOSAL
-
     function register(string memory name_, uint256 d_tokens) public {
         Members[msg.sender] = Member({
             name: name_,
@@ -108,6 +105,7 @@ contract bunnG_test is Restrictions {
         });
     }
 
+    // A qualified user initiates a TOPIC/PROPOSAL
     function initiate_topic(
         string memory Title_,
         address[] memory implementation_contracts,
@@ -132,10 +130,13 @@ contract bunnG_test is Restrictions {
         });
 
         Topics[counter] = new_topic;
-        for (uint i=0; i<=implementation_contracts.length;i++) 
-        {
-            Topics[counter].implementation_contracts.push(implementation_contracts[i]);
-            Topics[counter].implementation_contracts_values.push(implementation_contracts_values[i]);
+        for (uint i = 0; i <= implementation_contracts.length; i++) {
+            Topics[counter].implementation_contracts.push(
+                implementation_contracts[i]
+            );
+            Topics[counter].implementation_contracts_values.push(
+                implementation_contracts_values[i]
+            );
             Topics[counter].signatures.push(signatures[i]);
         }
 
@@ -166,10 +167,10 @@ contract bunnG_test is Restrictions {
             BUNN.balanceOf(msg.sender) > 0,
             "YOU MUST POSSES TOKENs TO BE AN ELIGIBLE VOTER"
         );
-        if (position_ == true) {
-            topic.for_votes = topic.for_votes + 1;
+        if (casted_vote.position) {
+            topic.for_votes++;
         } else {
-            topic.against_votes = topic.against_votes + 1;
+            topic.against_votes++;
         }
 
         // map users vote against the topic they voted for
