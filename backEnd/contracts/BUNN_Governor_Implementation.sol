@@ -1,18 +1,17 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity ^0.8.19;
 
-contract external_contract {
+contract IMPLEMENTATION_CONTRACT {
     uint256 public state = 0;
     uint256 public val;
 
     constructor() {}
 
     //functions signature ==> "function alterState(uint)"
-    function alterState(uint256 arg) public payable  returns(uint ){
-        state += arg;
-        val = val + msg.value;
-        val = val/1e18;
-        return state;
+    function alterState() public payable  returns(uint ){
+        val += msg.value;
+        val /= 1e18;
+        return val;
     }
 
     function balance() public view returns (uint256){

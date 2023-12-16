@@ -76,7 +76,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"backEnd/contracts/BUNN_Governor_Implementation.sol": "external_contract"
+			"backEnd/contracts/BUNN_Governor_Implementation.sol": "IMPLEMENTATION_CONTRACT"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -91,11 +91,11 @@
 	},
 	"sources": {
 		"backEnd/contracts/BUNN_Governor_Implementation.sol": {
-			"keccak256": "0xd79694c4711bfab840a0fc83e0274eb34816381c8a8a924c164fc6ba12d81711",
+			"keccak256": "0xf4605a1a670392e24f17b9455bb2f7f2b3eca8b73b7dbcde0d4189b215c02330",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://df3e37fa15a8d72db58885faec0a0e759d37b6456e6a4bda30ac630b241a0842",
-				"dweb:/ipfs/QmXvLhdesZtxvAM1FgD2ALvahbUDvzPRjPFMPfdfQ6TLy5"
+				"bzz-raw://d206d99cf358fc8e45604dd82ffee3bbda43f8f7cc011d3e04c5f748364a8dde",
+				"dweb:/ipfs/QmRzRSG1cjvx4gHXbT6CN2tMCriSo3AzXLGnEx7PWfJBmN"
 			]
 		}
 	},

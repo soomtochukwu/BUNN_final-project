@@ -570,7 +570,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
 pragma solidity ^0.8.19;
 
 // contract BUNN_ICO_TOKEN
-contract BUNN_DAO_test is ERC20 {
+contract GOVERNANCE_TOKEN is ERC20 {
     uint256 private MAX_SUPPLY;
     address public owner;
 
