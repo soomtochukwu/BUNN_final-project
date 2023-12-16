@@ -174,6 +174,13 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "UPGRADE",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -343,6 +350,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newAdmin",
+						"type": "address"
+					}
+				],
+				"name": "setOwner",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "utility_token_address",
 				"outputs": [
@@ -436,11 +456,11 @@
 			]
 		},
 		"backEnd/contracts/BUNN_Governor_Proxy.sol": {
-			"keccak256": "0x4b7467e716ed9abfd3086c842af39322349b56d7de06021e50ddc8b344af7ec7",
+			"keccak256": "0x4461dafdc2d459d68d354905ecc183df5e2e3e6042ccffb58d0536d9a3b6481d",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://482c4cef3e76a7a0e20b74a751d697d7cde6f397fa2968c80414bd4a77599db8",
-				"dweb:/ipfs/QmRnwpPaPuHcLtkat3rnkc6xjeuN9LbyBXnkQGkvBMyRdq"
+				"bzz-raw://0171262883eb6f6fb1d5b2c6a5fb22baa323f2befd386be5920715b86fc0473b",
+				"dweb:/ipfs/QmPggSjD9GhHKjhws9BvZAShtTtZAiC1E17ynG55yPwjGe"
 			]
 		},
 		"backEnd/contracts/restrictions.sol": {
