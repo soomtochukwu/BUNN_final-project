@@ -135,28 +135,18 @@
 						"type": "string"
 					},
 					{
-						"internalType": "uint256",
-						"name": "for_votes",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "against_votes",
-						"type": "uint256"
-					},
-					{
 						"internalType": "address",
 						"name": "initiator",
 						"type": "address"
 					},
 					{
 						"internalType": "address",
-						"name": "implementation_contract",
+						"name": "implementation_contract_address",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "implementation_contract_value",
+						"name": "implementation_contract_argument",
 						"type": "uint256"
 					},
 					{
@@ -177,6 +167,40 @@
 					{
 						"internalType": "bool",
 						"name": "cancelled",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "ballots",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "Topic_ID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "position",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "voted",
 						"type": "bool"
 					}
 				],
@@ -249,17 +273,17 @@
 					},
 					{
 						"internalType": "address",
-						"name": "implementation_contracts",
+						"name": "implementation_contract_address",
 						"type": "address"
 					},
 					{
 						"internalType": "uint256",
-						"name": "implementation_contracts_values",
+						"name": "contract_argument",
 						"type": "uint256"
 					},
 					{
 						"internalType": "string",
-						"name": "signatures",
+						"name": "signature",
 						"type": "string"
 					}
 				],
@@ -337,29 +361,19 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
 					}
 				],
 				"name": "votes",
 				"outputs": [
 					{
-						"internalType": "address",
-						"name": "voter",
-						"type": "address"
+						"internalType": "uint256",
+						"name": "for_votes",
+						"type": "uint256"
 					},
 					{
-						"internalType": "bool",
-						"name": "position",
-						"type": "bool"
-					},
-					{
-						"internalType": "bool",
-						"name": "voted",
-						"type": "bool"
+						"internalType": "uint256",
+						"name": "against_votes",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -399,7 +413,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"backEnd/contracts/BUNN_Governor_Proxy.sol": "BUNN_"
+			"backEnd/contracts/BUNN_Governor_Proxy.sol": "BUNN_GOVERNOR"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -422,11 +436,11 @@
 			]
 		},
 		"backEnd/contracts/BUNN_Governor_Proxy.sol": {
-			"keccak256": "0x8c6cc76d98b71bcd14cf15301133e2a229a7a545fec83da312fa87b20b511272",
+			"keccak256": "0x4b7467e716ed9abfd3086c842af39322349b56d7de06021e50ddc8b344af7ec7",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://d67e59d47dd6e2a3e15dbeb3764135ec3ecdb01c4981e024912ede51e48acaa3",
-				"dweb:/ipfs/Qmew63gMunLUZ46zMivLji9tyaRhJoktyi2cTdeQeoea2y"
+				"bzz-raw://482c4cef3e76a7a0e20b74a751d697d7cde6f397fa2968c80414bd4a77599db8",
+				"dweb:/ipfs/QmRnwpPaPuHcLtkat3rnkc6xjeuN9LbyBXnkQGkvBMyRdq"
 			]
 		},
 		"backEnd/contracts/restrictions.sol": {

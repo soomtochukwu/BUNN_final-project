@@ -245,11 +245,11 @@
 	},
 	"sources": {
 		"backEnd/contracts/governance_token.sol": {
-			"keccak256": "0x71f9d74f740fc6e68c87ca4d6979d9cf2b42bec97bea011c4505216414894a8f",
+			"keccak256": "0xaab44a40313dd22190e9d8a4d2d5b3ba7f3f446e24c21bd70f4c473e4626f183",
 			"license": "MIT AND SEE",
 			"urls": [
-				"bzz-raw://6bc7f6839e549974721bd4933b9855910a1d40285865615382f56ae2e6db5f56",
-				"dweb:/ipfs/QmZzvKamV5QUsFNG5HALwBfTrU74FTn7KNytwdPVhg6t7i"
+				"bzz-raw://f6f433823fa732321370783f25ab3cc534f766176f6574c326e84e2c0d3b5a8d",
+				"dweb:/ipfs/QmW4FXKBBE8GkmDYWGXoJTFeCxeQhYQVFwg4WqzwbmjkAX"
 			]
 		}
 	},

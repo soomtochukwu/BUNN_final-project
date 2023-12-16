@@ -4,7 +4,7 @@ pragma solidity ^0.8.19;
 import "./restrictions.sol";
 import "./utility_token-interface.sol";
 
-contract bunnG_test is Restrictions {
+contract BUNN_GOVERNOR is Restrictions {
     /**************************
     Section 0: External resources 
 
@@ -43,11 +43,17 @@ contract bunnG_test is Restrictions {
     Members can cast their vote(s) by calling the `cast_vote` function.
     */
     struct ballot {
-        address voter;
+        uint256 Topic_ID;
         bool position;
         bool voted;
     }
-    mapping(uint => mapping(address => ballot)) public votes;
+    mapping(address => mapping (uint => ballot)) public ballots;
+
+    struct vote{
+        uint256 for_votes;
+        uint256 against_votes;
+    }
+    mapping(uint => vote) public votes;
 
     /*
     Section A3: defines how "Topics" of "Proposals" is represented.
@@ -60,11 +66,9 @@ contract bunnG_test is Restrictions {
     struct Topic {
         uint id;
         string Title;
-        uint for_votes;
-        uint against_votes;
         address initiator;
-        address implementation_contract;
-        uint256 implementation_contract_value;
+        address implementation_contract_address;
+        uint256 implementation_contract_argument;
         string signature;
         uint256 start_time;
         bool executed;
@@ -109,9 +113,9 @@ contract bunnG_test is Restrictions {
     // A qualified user initiates a TOPIC/PROPOSAL
     function initiate_topic(
         string memory Title_,
-        address  implementation_contracts,
-        uint  implementation_contracts_values,
-        string memory signatures
+        address  implementation_contract_address,
+        uint  contract_argument,
+        string memory signature
     ) public {
         /* sanity checks */
         require(Members[msg.sender].belongs, "NOT A MEMBER");
@@ -119,16 +123,16 @@ contract bunnG_test is Restrictions {
         Topic memory new_topic = Topic({
             id: counter,
             Title: Title_,
-            for_votes: 0,
-            against_votes: 0,
             initiator: msg.sender,
-            implementation_contract: implementation_contracts,
-            implementation_contract_value: implementation_contracts_values,
-            signature: signatures,
+            implementation_contract_address: implementation_contract_address,
+            implementation_contract_argument: contract_argument,
+            signature: signature,
             start_time: block.timestamp,
             executed: false,
             cancelled: false
         });
+
+        // require(Topics[new_topic.id], "FAILED TO INITIATE TOPIC");
 
         Topics[new_topic.id] = new_topic;
 
@@ -139,11 +143,6 @@ contract bunnG_test is Restrictions {
     // A qualified user casts their vote(s)
     function cast_vote(uint topic_id, bool position_) public {
         Topic memory topic = Topics[topic_id];
-        ballot memory casted_vote = ballot({
-            voter: msg.sender,
-            position: position_,
-            voted: true
-        });
 
         /*sanity checks*/
         IUTILITY_TOKEN BUNN = IUTILITY_TOKEN(utility_token_address);
@@ -152,22 +151,30 @@ contract bunnG_test is Restrictions {
 
         // check if the voting period has expired
         uint256 end_time = voting_duration + topic.start_time;
-        require(end_time > block.timestamp, "Voting period has elapsed ");
+        require(end_time > block.timestamp, "VOTING PERIOD HAS ELAPSED");
 
         // ensure that the voter has enough tokens
         require(
             BUNN.balanceOf(msg.sender) > 0,
             "YOU MUST POSSES TOKENs TO BE AN ELIGIBLE VOTER"
         );
-        if (casted_vote.position) {
-            topic.for_votes++;
-        } else {
-            topic.against_votes++;
-        }
+        
 
         // map users vote against the topic they voted for
         // it is supposed to track users who participated in the decision
-        votes[topic_id][msg.sender] = casted_vote;
+
+        require(!ballots[msg.sender][topic_id].voted, "MEMBERS CAN ONLY CAST A VOTE PER TOPIC");
+        ballots[msg.sender][topic_id] = ballot({
+            Topic_ID: topic_id,
+            position: position_,
+            voted: true
+        });
+
+        if (ballots[msg.sender][topic_id].position) {
+            votes[topic_id].for_votes = votes[topic_id].for_votes + 1;
+        }else {
+            votes[topic_id].against_votes = votes[topic_id].against_votes + 1;
+        }
 
         emit vote_cast(msg.sender, topic.id, position_);
     }
@@ -178,21 +185,21 @@ contract bunnG_test is Restrictions {
     ) public payable {
         Topic memory topic_to_implement;
         address implementation_contract;
-        uint256 implementation_values;
+        uint256 implementation_argument;
         string memory signature;
 
         topic_to_implement = Topics[topic_id];
-        implementation_contract = topic_to_implement.implementation_contract;
-        implementation_values = topic_to_implement.implementation_contract_value;
+        implementation_contract = topic_to_implement.implementation_contract_address;
+        implementation_argument = topic_to_implement.implementation_contract_argument;
         signature = topic_to_implement.signature;
 
         /* sanity checks */
         //check the quorum
        
-        /* uint256 total_votes = topic_to_implement.for_votes + topic_to_implement.against_votes;
-        require(quorum(topic_to_implement.for_votes, total_votes), "Threshold not exceeded"); */
+        uint256 total_votes = votes[topic_id].for_votes + votes[topic_id].against_votes;
+        require(quorum(votes[topic_id].for_votes, total_votes), "THRESHOLD NOT EXCEEDED");
 
-        (bool success,bytes memory returned_data) = implementation_contract.call{value: msg.value}(abi.encodeWithSignature(signature, uint256(implementation_values)));
+        (bool success,bytes memory returned_data) = implementation_contract.call{value: msg.value}(abi.encodeWithSignature(signature, uint256(implementation_argument)));
 
         require(success, "FAILED TO IMPLEMENT");
 
