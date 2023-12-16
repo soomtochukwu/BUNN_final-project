@@ -25,6 +25,8 @@ contract BUNN_GOVERNOR is Restrictions {
 
     Members are recorded when they vote, `cast_vote`. 
     */
+    mapping(address => bool) admin; 
+
     struct Member {
         string name; // if necessary
         bool belongs;
@@ -96,6 +98,7 @@ contract BUNN_GOVERNOR is Restrictions {
     /* ************************* */
     constructor(address UTA) {
         utility_token_address = UTA;
+        admin[msg.sender] = true;
     }
 
     /*************************
@@ -209,4 +212,15 @@ contract BUNN_GOVERNOR is Restrictions {
     /*************************
     Section D: Maintenance/Upgrade
     *************************/
+
+    modifier onlyOwner() {
+        require(admin[msg.sender], "NOT A VALID CALLER");
+        _;
+    }
+
+    function setOwner(address newAdmin) public onlyOwner{
+        admin[newAdmin] = true;
+    }
+
+    function UPGRADE() public onlyOwner {}
 }

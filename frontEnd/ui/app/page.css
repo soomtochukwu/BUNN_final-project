@@ -1,0 +1,38 @@
+.main {
+    width: 100%;
+}
+
+.footer,
+.sidebar,
+.section {
+    background-color: green;
+    margin: 1em;
+    padding: 1em;
+    border-radius: 1em;
+}
+
+.header {
+    width: inherit;
+    position: absolute;
+    background-color: green;
+    padding: 1em;
+    top: 0em;
+}
+
+.sidebar,
+.main {
+    height: inherit;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.sidebar {
+    height: 100vh;
+}
+
+.footer {
+    position: fixed;
+    width: 100vw;
+    margin: 0;
+    bottom: 0;
+}
