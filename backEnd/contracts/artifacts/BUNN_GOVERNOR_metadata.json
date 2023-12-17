@@ -26,8 +26,14 @@
 				"inputs": [
 					{
 						"indexed": false,
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"indexed": false,
 						"internalType": "uint256",
-						"name": "topic_acted_on",
+						"name": "topic_id",
 						"type": "uint256"
 					},
 					{
@@ -35,12 +41,6 @@
 						"internalType": "bool",
 						"name": "implemented",
 						"type": "bool"
-					},
-					{
-						"indexed": false,
-						"internalType": "bytes",
-						"name": "data",
-						"type": "bytes"
 					}
 				],
 				"name": "decision_implemented",
@@ -50,19 +50,58 @@
 				"anonymous": false,
 				"inputs": [
 					{
-						"indexed": false,
-						"internalType": "uint256",
-						"name": "topic_acted_on",
-						"type": "uint256"
-					},
+						"indexed": true,
+						"internalType": "address",
+						"name": "newAdmin",
+						"type": "address"
+					}
+				],
+				"name": "new_Admin",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "new_member",
+						"type": "address"
+					}
+				],
+				"name": "new_member",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
 					{
 						"indexed": true,
 						"internalType": "address",
 						"name": "proposer",
 						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "topic",
+						"type": "string"
 					}
 				],
 				"name": "proposal_made",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "demotedAdmin",
+						"type": "address"
+					}
+				],
+				"name": "remove_Admin",
 				"type": "event"
 			},
 			{
@@ -131,7 +170,7 @@
 					},
 					{
 						"internalType": "string",
-						"name": "Title",
+						"name": "title",
 						"type": "string"
 					},
 					{
@@ -140,14 +179,14 @@
 						"type": "address"
 					},
 					{
+						"internalType": "string",
+						"name": "details",
+						"type": "string"
+					},
+					{
 						"internalType": "address",
 						"name": "implementation_contract_address",
 						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "implementation_contract_argument",
-						"type": "uint256"
 					},
 					{
 						"internalType": "string",
@@ -184,6 +223,61 @@
 				"inputs": [
 					{
 						"internalType": "address",
+						"name": "newAdmin",
+						"type": "address"
+					}
+				],
+				"name": "addAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "admin",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "is_admin",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "removers",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "adders",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "agreement_id",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
 						"name": "",
 						"type": "address"
 					},
@@ -211,6 +305,19 @@
 						"type": "bool"
 					}
 				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "topic_id",
+						"type": "uint256"
+					}
+				],
+				"name": "cancel_Topic",
+				"outputs": [],
 				"stateMutability": "view",
 				"type": "function"
 			},
@@ -275,22 +382,22 @@
 				"inputs": [
 					{
 						"internalType": "string",
-						"name": "Title_",
+						"name": "title_",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "details_",
 						"type": "string"
 					},
 					{
 						"internalType": "address",
-						"name": "implementation_contract_address",
+						"name": "implementation_contract_address_",
 						"type": "address"
 					},
 					{
-						"internalType": "uint256",
-						"name": "contract_argument",
-						"type": "uint256"
-					},
-					{
 						"internalType": "string",
-						"name": "signature",
+						"name": "signature_",
 						"type": "string"
 					}
 				],
@@ -337,6 +444,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "demotedAdmin",
+						"type": "address"
+					}
+				],
+				"name": "removeAdmin",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "returned",
 				"outputs": [
@@ -347,19 +467,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "newAdmin",
-						"type": "address"
-					}
-				],
-				"name": "setOwner",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -456,11 +563,11 @@
 			]
 		},
 		"backEnd/contracts/BUNN_Governor_Proxy.sol": {
-			"keccak256": "0x4461dafdc2d459d68d354905ecc183df5e2e3e6042ccffb58d0536d9a3b6481d",
+			"keccak256": "0x36e4d51bc2cde562c8a36b902eb92ac27e5e278f584fb63ec8b645c7d4a8029c",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://0171262883eb6f6fb1d5b2c6a5fb22baa323f2befd386be5920715b86fc0473b",
-				"dweb:/ipfs/QmPggSjD9GhHKjhws9BvZAShtTtZAiC1E17ynG55yPwjGe"
+				"bzz-raw://5a40a4efdea3e5679dbf2ea770b4c8975a254c218e083393baf1f2718153f4d1",
+				"dweb:/ipfs/QmQt9Azxfx2BJugBaZ4SspJHaqCbxB2JWeAXhoQLuGHzHZ"
 			]
 		},
 		"backEnd/contracts/restrictions.sol": {

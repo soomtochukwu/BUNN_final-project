@@ -25,7 +25,14 @@ contract BUNN_GOVERNOR is Restrictions {
 
     Members are recorded when they vote, `cast_vote`. 
     */
-    mapping(address => bool) admin; 
+    struct admin_ {
+        bool is_admin;
+        uint256 removers;
+        uint256 adders;
+    }
+    mapping(address => admin_) public admin;
+
+    address[] private admins;
 
     struct Member {
         string name; // if necessary
@@ -58,7 +65,7 @@ contract BUNN_GOVERNOR is Restrictions {
     mapping(uint => vote) public votes;
 
     /*
-    Section A3: defines how "Topics" of "Proposals" is represented.
+    Section A3a: defines how "Topics" of "Proposals" is represented.
 
     `Topic` defines species the required attributes (self-explanatory) of a topic.
     `Topics` is supposed to track "Topics" according to their respective ID(uint).
@@ -67,16 +74,17 @@ contract BUNN_GOVERNOR is Restrictions {
      */
     struct Topic {
         uint id;
-        string Title;
+        string title;
         address initiator;
+        string details;
         address implementation_contract_address;
-        uint256 implementation_contract_argument;
         string signature;
         uint256 start_time;
         bool executed;
         bool cancelled;
     }
     uint public counter = 1;
+    uint public agreement_id = 1;
     mapping(uint => Topic) public Topics;
 
     /* *************************
@@ -84,21 +92,24 @@ contract BUNN_GOVERNOR is Restrictions {
     
     **************************/
     event decision_implemented(
-        uint topic_acted_on,
-        bool implemented,
-        bytes data
+        string title,
+        uint topic_id,
+        bool implemented
     );
     event vote_cast(
         address indexed participant,
         uint topic_acted_on,
         bool position
     );
-    event proposal_made(uint topic_acted_on, address indexed proposer);
+    event proposal_made(address indexed proposer, string topic);
+    event new_member(address indexed new_member);
+    event new_Admin(address indexed newAdmin);
+    event remove_Admin(address indexed demotedAdmin);
 
     /* ************************* */
     constructor(address UTA) {
         utility_token_address = UTA;
-        admin[msg.sender] = true;
+        admin[msg.sender].is_admin = true;
     }
 
     /*************************
@@ -111,25 +122,26 @@ contract BUNN_GOVERNOR is Restrictions {
             belongs: true/* ,
             delegated_tokens: d_tokens */
         });
+        emit new_member(msg.sender);
     }
 
     // A qualified user initiates a TOPIC/PROPOSAL
     function initiate_topic(
-        string memory Title_,
-        address  implementation_contract_address,
-        uint  contract_argument,
-        string memory signature
+        string memory title_,
+        string memory details_,
+        address  implementation_contract_address_,
+        string memory signature_
     ) public {
         /* sanity checks */
         require(Members[msg.sender].belongs, "NOT A MEMBER");
 
         Topic memory new_topic = Topic({
             id: counter,
-            Title: Title_,
+            title: title_,
             initiator: msg.sender,
-            implementation_contract_address: implementation_contract_address,
-            implementation_contract_argument: contract_argument,
-            signature: signature,
+            details: details_,
+            implementation_contract_address: implementation_contract_address_,
+            signature: signature_,
             start_time: block.timestamp,
             executed: false,
             cancelled: false
@@ -140,7 +152,7 @@ contract BUNN_GOVERNOR is Restrictions {
         Topics[new_topic.id] = new_topic;
 
         counter = counter + 1;
-        emit proposal_made(counter, msg.sender);
+        emit proposal_made(msg.sender, new_topic.title);
     }
 
     // A qualified user casts their vote(s)
@@ -185,15 +197,13 @@ contract BUNN_GOVERNOR is Restrictions {
     // execute/implement a decision or topic is it passed the voting process
     function implement_decision(
         uint topic_id
-    ) public payable {
+    ) public payable onlyAdmin{
         Topic memory topic_to_implement;
         address implementation_contract;
-        uint256 implementation_argument;
         string memory signature;
 
         topic_to_implement = Topics[topic_id];
         implementation_contract = topic_to_implement.implementation_contract_address;
-        implementation_argument = topic_to_implement.implementation_contract_argument;
         signature = topic_to_implement.signature;
 
         /* sanity checks */
@@ -201,26 +211,56 @@ contract BUNN_GOVERNOR is Restrictions {
        
         uint256 total_votes = votes[topic_id].for_votes + votes[topic_id].against_votes;
         require(quorum(votes[topic_id].for_votes, total_votes), "THRESHOLD NOT EXCEEDED");
-
-        (bool success,bytes memory returned_data) = implementation_contract.call{value: msg.value}(abi.encodeWithSignature(signature, uint256(implementation_argument)));
+        // check that the topic has not been cancelled
+        require(topic_to_implement.cancelled, "THIS TOPIC IS CANCELLED");
+        // topic can only be implemented once
+        require(!topic_to_implement.executed, "TOPIC CAN ONLY BE IMPLEMENTED ONCE");
+        // implement topic
+        (bool success,bytes memory returned_data) = implementation_contract.call{value: msg.value}(abi.encodeWithSignature(signature));
 
         require(success, "FAILED TO IMPLEMENT");
-
         returned = abi.decode(returned_data, (uint256));
+        topic_to_implement.executed = success;
+        emit decision_implemented(topic_to_implement.title, topic_id, success);
+    }
+
+    function cancel_Topic(uint topic_id) public view onlyAdmin {
+        Topic memory topic_to_cancel = Topics[topic_id];
+        topic_to_cancel.cancelled = true;
     }
 
     /*************************
     Section D: Maintenance/Upgrade
     *************************/
 
-    modifier onlyOwner() {
-        require(admin[msg.sender], "NOT A VALID CALLER");
+    modifier onlyAdmin() {
+        require(admin[msg.sender].is_admin, "ACCESS DENIED!");
         _;
     }
 
-    function setOwner(address newAdmin) public onlyOwner{
-        admin[newAdmin] = true;
+    function addAdmin(address newAdmin) public onlyAdmin {
+        if(admin[newAdmin].adders >= admins.length ){
+            admin[newAdmin].is_admin = true;
+            admins.push(newAdmin);
+            admin[newAdmin].adders = admin[newAdmin].adders + 1;
+        }else{
+            admin[newAdmin].adders = admin[newAdmin].adders + 1;
+        }
+        
+        emit new_Admin(newAdmin);
     }
 
-    function UPGRADE() public onlyOwner {}
+    function removeAdmin(address demotedAdmin) public onlyAdmin{
+        // require(admin[demotedAdmin].removers > (admins.length/2), "");
+        if(admin[demotedAdmin].removers >= admins.length-1 ){
+            admin[demotedAdmin].is_admin = false;
+            admin[demotedAdmin].removers = admin[demotedAdmin].removers + 1;
+        }else {
+            admin[demotedAdmin].removers = admin[demotedAdmin].removers + 1;
+        }
+
+        emit remove_Admin(demotedAdmin);
+    }
+
+    function UPGRADE() public onlyAdmin {}
 }
