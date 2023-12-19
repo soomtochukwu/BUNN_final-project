@@ -112,20 +112,26 @@ contract BUNN_GOVERNOR_LOGIC is governor_storage, Restrictions {
 
     // execute/implement a decision or topic is it passed the voting process
     function implement_decision(
-        uint topic_id
+        uint256 topic_id, bool _override
     ) public payable onlyAdmin{
         Topic memory topic_to_implement;
         address implementation_contract;
         string memory signature;
-
+        
+        uint256 total_votes = votes[topic_id].for_votes + votes[topic_id].against_votes;
+        uint256 end_time = voting_duration + topic_to_implement.start_time;
         topic_to_implement = Topics[topic_id];
         implementation_contract = topic_to_implement.implementation_contract_address;
         signature = topic_to_implement.signature;
 
         /* sanity checks */
+       // check if voting is still in progress
+        if (_override) {
+            // 
+        }else {
+            require(end_time>block.timestamp, "CANNOT IMPELEMENT BECAUSE VOTING IS STILL IN PROGRESS");
+        }
         //check the quorum
-       
-        uint256 total_votes = votes[topic_id].for_votes + votes[topic_id].against_votes;
         require(quorum(votes[topic_id].for_votes, total_votes), "THRESHOLD NOT EXCEEDED");
         // check that the topic has not been cancelled
         require(!topic_to_implement.cancelled, "THIS TOPIC IS CANCELLED");
@@ -133,16 +139,16 @@ contract BUNN_GOVERNOR_LOGIC is governor_storage, Restrictions {
         require(!topic_to_implement.executed, "TOPIC CAN ONLY BE IMPLEMENTED ONCE");
         // implement topic
         (bool success,bytes memory returned_data) = implementation_contract.call{value: msg.value}(abi.encodeWithSignature(signature));
-
+        // confirm successfull implementation
         require(success, "FAILED TO IMPLEMENT");
-        returned = abi.decode(returned_data, (uint256));
-        topic_to_implement.executed = success;
+        mark_as_executed(topic_id);
+        // emit respective event
         emit decision_implemented(topic_to_implement.title, topic_id, success);
+        returned = abi.decode(returned_data, (uint256));
     }
 
-    function cancel_Topic(uint topic_id) public view onlyAdmin {
-        Topic memory topic_to_cancel = Topics[topic_id];
-        topic_to_cancel.cancelled = true;
+    function mark_as_executed(uint256 topic_id) private {
+        Topics[topic_id].executed = true;
     }
 
     /*************************
