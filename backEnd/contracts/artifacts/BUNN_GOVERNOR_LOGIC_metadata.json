@@ -571,11 +571,11 @@
 			]
 		},
 		"backEnd/contracts/restrictions.sol": {
-			"keccak256": "0xee3f70bc7421db3c4a2d821f25358a365bb58d2145dfee1e7753e73c602e8a18",
+			"keccak256": "0x713ca8cf0b8fdeab3695926ae4d09e2c05b7bc07e352247315d0d8d8c85f70b2",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://609f017c5ed0c831dab7f1eef21b1ce6dee7b25d8c1f49466b364d5e036816ac",
-				"dweb:/ipfs/QmXD6c5kmcXV2BX7uiXvyfqjY6S7w3k4WJWmZqipJPbrJT"
+				"bzz-raw://ce6ccc81bde2b56ef86e27fe21e3939ca2e116368d5ab73e8e121728099274bb",
+				"dweb:/ipfs/QmX8bLZiRdtRTyYhjaL4ZUvySwLmottyFfm4noZwCPfDHh"
 			]
 		},
 		"backEnd/contracts/utility_token-interface.sol": {

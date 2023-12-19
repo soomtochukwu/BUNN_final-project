@@ -62,6 +62,7 @@ contract BUNN_GOVERNOR is governor_storage, Restrictions {
         
         Topic memory topic = Topics[topic_id];
         IUTILITY_TOKEN BUNN = IUTILITY_TOKEN(utility_token_address);
+        uint256 end_time = voting_duration + topic.start_time;
 
         /*sanity checks*/
         // check if the Topic is cancelled 
@@ -69,7 +70,6 @@ contract BUNN_GOVERNOR is governor_storage, Restrictions {
         // check if sender is a registered user
         require(Members[msg.sender].belongs, "NOT A MEMBER");
         // check if the voting period has expired
-        uint256 end_time = voting_duration + topic.start_time;
         require(end_time > block.timestamp, "VOTING PERIOD HAS ELAPSED");
         // ensure that the voter has enough tokens
         require(
@@ -101,14 +101,15 @@ contract BUNN_GOVERNOR is governor_storage, Restrictions {
     }
 
     // execute/implement a decision or topic is it passed the voting process
-    function implement_decision(uint256 topic_id) public payable onlyAdmin{
-        (bool success, ) = logic_contrcat.delegatecall(abi.encodeWithSignature("implement_decision(uint256)", topic_id));
+    function implement_decision(uint256 topic_id, bool _override) public payable onlyAdmin{
+        (bool success, ) = logic_contrcat.delegatecall(abi.encodeWithSignature("implement_decision(uint256,bool)", topic_id, _override));
         require(success, "FAILED TO IMPLEMENT DECISION");
     }
 
-    function cancel_Topic(uint topic_id) public onlyAdmin {
+    function cancel_Topic(uint256 topic_id) public onlyAdmin {
         Topics[topic_id].cancelled = true;
     }
+    
 
     /*************************
     Section D: Maintenance/Upgrade
