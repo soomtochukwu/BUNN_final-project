@@ -1,0 +1,273 @@
+{
+	"compiler": {
+		"version": "0.8.22+commit.4fc1097e"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "Members",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "bool",
+						"name": "belongs",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "Topics",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "title",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "initiator",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "details",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "implementation_contract_address",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "signature",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "start_time",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "executed",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "cancelled",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "admin",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "is_admin",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "removers",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "adders",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "ballots",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "Topic_ID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "position",
+						"type": "bool"
+					},
+					{
+						"internalType": "bool",
+						"name": "voted",
+						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voting_power",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "counter",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "logic_contrcat",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "returned",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "utility_token_address",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "votes",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "for_votes",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "against_votes",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"backEnd/contracts/governor_storage.sol": "governor_storage"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"backEnd/contracts/governor_storage.sol": {
+			"keccak256": "0x08e9821146e6a76b31998831ee684fed8166a35a772f574a90f24fff8a556874",
+			"license": "SEE LICENSE IN LICENSE",
+			"urls": [
+				"bzz-raw://a045fc77fb442fd94c22124ab9605a1c9ddbfd586c75c53bf8b64e50495535bb",
+				"dweb:/ipfs/QmZHGNAyjmxHfK33J5WRoEgwD9VushNS89p2oMkDQY62z2"
+			]
+		}
+	},
+	"version": 1
+}

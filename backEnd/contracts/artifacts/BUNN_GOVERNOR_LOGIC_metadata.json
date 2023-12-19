@@ -6,18 +6,7 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "utility_token_address_",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "upgraded_logic_contract",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -221,19 +210,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "upgradeed_logic_contract",
-						"type": "address"
-					}
-				],
-				"name": "UPGRADE",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "newAdmin",
 						"type": "address"
 					}
@@ -321,7 +297,7 @@
 				],
 				"name": "cancel_Topic",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -556,7 +532,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"backEnd/contracts/BUNN_Governor_Proxy.sol": "BUNN_GOVERNOR"
+			"backEnd/contracts/BUNN_Logic.sol": "BUNN_GOVERNOR_LOGIC"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -578,12 +554,12 @@
 				"dweb:/ipfs/QmQyRpyPRL5SQuAgj6SHmbir3foX65FJjbVTTQrA2EFg6L"
 			]
 		},
-		"backEnd/contracts/BUNN_Governor_Proxy.sol": {
-			"keccak256": "0x7eefc2ee2cf1e2d42a2fa95a163ec286613b1e3fdd47551f7a743b7c94eb2845",
+		"backEnd/contracts/BUNN_Logic.sol": {
+			"keccak256": "0x2ade000dc88f4a92e1c7aa7d3a865dc7b0ca4b83169dab6b198b258f0f246d75",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://ec1f4358bb2fbb5a35d2327951a4ef719f4294dc25677c355fb62e8df6eb5c7e",
-				"dweb:/ipfs/QmR3Ux2U9bC1tfi8c9fg3xKXC8VCPR7bhHJdMB7KMisCbi"
+				"bzz-raw://36582cf75b0b4d74f73d20dcb9e82fd077bf2c04ef22f95fc82ea649e36884e3",
+				"dweb:/ipfs/Qmc4HnonM4W6y2gbhoSohgrN65iifQdb6DNyukx6kMDqje"
 			]
 		},
 		"backEnd/contracts/governor_storage.sol": {
@@ -595,11 +571,11 @@
 			]
 		},
 		"backEnd/contracts/restrictions.sol": {
-			"keccak256": "0x713ca8cf0b8fdeab3695926ae4d09e2c05b7bc07e352247315d0d8d8c85f70b2",
+			"keccak256": "0xee3f70bc7421db3c4a2d821f25358a365bb58d2145dfee1e7753e73c602e8a18",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://ce6ccc81bde2b56ef86e27fe21e3939ca2e116368d5ab73e8e121728099274bb",
-				"dweb:/ipfs/QmX8bLZiRdtRTyYhjaL4ZUvySwLmottyFfm4noZwCPfDHh"
+				"bzz-raw://609f017c5ed0c831dab7f1eef21b1ce6dee7b25d8c1f49466b364d5e036816ac",
+				"dweb:/ipfs/QmXD6c5kmcXV2BX7uiXvyfqjY6S7w3k4WJWmZqipJPbrJT"
 			]
 		},
 		"backEnd/contracts/utility_token-interface.sol": {

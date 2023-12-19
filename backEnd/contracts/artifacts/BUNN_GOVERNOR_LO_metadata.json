@@ -6,18 +6,7 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "utility_token_address_",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "upgraded_logic_contract",
-						"type": "address"
-					}
-				],
+				"inputs": [],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
@@ -221,19 +210,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "upgradeed_logic_contract",
-						"type": "address"
-					}
-				],
-				"name": "UPGRADE",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "newAdmin",
 						"type": "address"
 					}
@@ -273,6 +249,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "agreement_id",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -301,11 +290,6 @@
 						"internalType": "bool",
 						"name": "voted",
 						"type": "bool"
-					},
-					{
-						"internalType": "uint256",
-						"name": "voting_power",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -321,7 +305,7 @@
 				],
 				"name": "cancel_Topic",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -407,19 +391,6 @@
 				"name": "initiate_topic",
 				"outputs": [],
 				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "logic_contrcat",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
-					}
-				],
-				"stateMutability": "view",
 				"type": "function"
 			},
 			{
@@ -556,7 +527,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"backEnd/contracts/BUNN_Governor_Proxy.sol": "BUNN_GOVERNOR"
+			"backEnd/contracts/BUNN_Logic.sol": "BUNN_GOVERNOR_LO"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -578,28 +549,28 @@
 				"dweb:/ipfs/QmQyRpyPRL5SQuAgj6SHmbir3foX65FJjbVTTQrA2EFg6L"
 			]
 		},
-		"backEnd/contracts/BUNN_Governor_Proxy.sol": {
-			"keccak256": "0x7eefc2ee2cf1e2d42a2fa95a163ec286613b1e3fdd47551f7a743b7c94eb2845",
+		"backEnd/contracts/BUNN_Logic.sol": {
+			"keccak256": "0x00ea52cdb9459eedb2d79cff69451e627c1b0cab2afefd99d9225f77d1e52572",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://ec1f4358bb2fbb5a35d2327951a4ef719f4294dc25677c355fb62e8df6eb5c7e",
-				"dweb:/ipfs/QmR3Ux2U9bC1tfi8c9fg3xKXC8VCPR7bhHJdMB7KMisCbi"
+				"bzz-raw://56cbfc148ffe8ce42c3abf9e87cc04acd49fe8648809312e2271f08a67396999",
+				"dweb:/ipfs/Qmdxq6j3FzoWQY2ATjmvEk2yZeA9A7H45F9X1ogJ97SMXX"
 			]
 		},
 		"backEnd/contracts/governor_storage.sol": {
-			"keccak256": "0x08e9821146e6a76b31998831ee684fed8166a35a772f574a90f24fff8a556874",
+			"keccak256": "0xccfe4a273be84045259b63af6be5d97b4a57479763a452fadb2e96fe372ab66f",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://a045fc77fb442fd94c22124ab9605a1c9ddbfd586c75c53bf8b64e50495535bb",
-				"dweb:/ipfs/QmZHGNAyjmxHfK33J5WRoEgwD9VushNS89p2oMkDQY62z2"
+				"bzz-raw://a49a1d5141eaf080715935fedc4a291cbc437844e2a5002078d369e0f7ddd80b",
+				"dweb:/ipfs/QmaG6jPaxe5nCLm1A2zCZRtdJv93AH8SNNeoTrvpD1NRXR"
 			]
 		},
 		"backEnd/contracts/restrictions.sol": {
-			"keccak256": "0x713ca8cf0b8fdeab3695926ae4d09e2c05b7bc07e352247315d0d8d8c85f70b2",
+			"keccak256": "0xee3f70bc7421db3c4a2d821f25358a365bb58d2145dfee1e7753e73c602e8a18",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://ce6ccc81bde2b56ef86e27fe21e3939ca2e116368d5ab73e8e121728099274bb",
-				"dweb:/ipfs/QmX8bLZiRdtRTyYhjaL4ZUvySwLmottyFfm4noZwCPfDHh"
+				"bzz-raw://609f017c5ed0c831dab7f1eef21b1ce6dee7b25d8c1f49466b364d5e036816ac",
+				"dweb:/ipfs/QmXD6c5kmcXV2BX7uiXvyfqjY6S7w3k4WJWmZqipJPbrJT"
 			]
 		},
 		"backEnd/contracts/utility_token-interface.sol": {

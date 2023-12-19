@@ -6,22 +6,6 @@
 	"output": {
 		"abi": [
 			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "utility_token_address_",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "upgraded_logic_contract",
-						"type": "address"
-					}
-				],
-				"stateMutability": "nonpayable",
-				"type": "constructor"
-			},
-			{
 				"inputs": [],
 				"name": "MathOverflowedMulDiv",
 				"type": "error"
@@ -49,64 +33,6 @@
 					}
 				],
 				"name": "decision_implemented",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "newAdmin",
-						"type": "address"
-					}
-				],
-				"name": "new_Admin",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "new_member",
-						"type": "address"
-					}
-				],
-				"name": "new_member",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "proposer",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "topic",
-						"type": "string"
-					}
-				],
-				"name": "proposal_made",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "demotedAdmin",
-						"type": "address"
-					}
-				],
-				"name": "remove_Admin",
 				"type": "event"
 			},
 			{
@@ -221,32 +147,6 @@
 				"inputs": [
 					{
 						"internalType": "address",
-						"name": "upgradeed_logic_contract",
-						"type": "address"
-					}
-				],
-				"name": "UPGRADE",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "newAdmin",
-						"type": "address"
-					}
-				],
-				"name": "addAdmin",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
 						"name": "",
 						"type": "address"
 					}
@@ -266,6 +166,19 @@
 					{
 						"internalType": "uint256",
 						"name": "adders",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "agreement_id",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -301,45 +214,9 @@
 						"internalType": "bool",
 						"name": "voted",
 						"type": "bool"
-					},
-					{
-						"internalType": "uint256",
-						"name": "voting_power",
-						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "topic_id",
-						"type": "uint256"
-					}
-				],
-				"name": "cancel_Topic",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "topic_id",
-						"type": "uint256"
-					},
-					{
-						"internalType": "bool",
-						"name": "position_",
-						"type": "bool"
-					}
-				],
-				"name": "cast_vote",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -356,19 +233,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "topic_id",
-						"type": "uint256"
-					}
-				],
-				"name": "implement_decision",
-				"outputs": [],
-				"stateMutability": "payable",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "implementation_delay",
 				"outputs": [
@@ -376,47 +240,6 @@
 						"internalType": "uint256",
 						"name": "",
 						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "title_",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "details_",
-						"type": "string"
-					},
-					{
-						"internalType": "address",
-						"name": "implementation_contract_address_",
-						"type": "address"
-					},
-					{
-						"internalType": "string",
-						"name": "signature_",
-						"type": "string"
-					}
-				],
-				"name": "initiate_topic",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "logic_contrcat",
-				"outputs": [
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -444,32 +267,6 @@
 					}
 				],
 				"stateMutability": "pure",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "string",
-						"name": "name_",
-						"type": "string"
-					}
-				],
-				"name": "register",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "address",
-						"name": "demotedAdmin",
-						"type": "address"
-					}
-				],
-				"name": "removeAdmin",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -556,7 +353,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"backEnd/contracts/BUNN_Governor_Proxy.sol": "BUNN_GOVERNOR"
+			"backEnd/contracts/governor_storage.sol": "sto"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -578,28 +375,20 @@
 				"dweb:/ipfs/QmQyRpyPRL5SQuAgj6SHmbir3foX65FJjbVTTQrA2EFg6L"
 			]
 		},
-		"backEnd/contracts/BUNN_Governor_Proxy.sol": {
-			"keccak256": "0x7eefc2ee2cf1e2d42a2fa95a163ec286613b1e3fdd47551f7a743b7c94eb2845",
-			"license": "SEE LICENSE IN LICENSE",
-			"urls": [
-				"bzz-raw://ec1f4358bb2fbb5a35d2327951a4ef719f4294dc25677c355fb62e8df6eb5c7e",
-				"dweb:/ipfs/QmR3Ux2U9bC1tfi8c9fg3xKXC8VCPR7bhHJdMB7KMisCbi"
-			]
-		},
 		"backEnd/contracts/governor_storage.sol": {
-			"keccak256": "0x08e9821146e6a76b31998831ee684fed8166a35a772f574a90f24fff8a556874",
+			"keccak256": "0xa0668350c6cb9b9252eab08c92249666ddf3ed69b9dd9f0e9f22025cff8c9661",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://a045fc77fb442fd94c22124ab9605a1c9ddbfd586c75c53bf8b64e50495535bb",
-				"dweb:/ipfs/QmZHGNAyjmxHfK33J5WRoEgwD9VushNS89p2oMkDQY62z2"
+				"bzz-raw://7c295c67f1b8a1611e31768425a045b60f92505088789c337220f7d71c3f879e",
+				"dweb:/ipfs/Qmek8oB1NHWAquFsgRyNCZSw2KvCQmfCvCKW3grfoMpwmw"
 			]
 		},
 		"backEnd/contracts/restrictions.sol": {
-			"keccak256": "0x713ca8cf0b8fdeab3695926ae4d09e2c05b7bc07e352247315d0d8d8c85f70b2",
+			"keccak256": "0xee3f70bc7421db3c4a2d821f25358a365bb58d2145dfee1e7753e73c602e8a18",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
-				"bzz-raw://ce6ccc81bde2b56ef86e27fe21e3939ca2e116368d5ab73e8e121728099274bb",
-				"dweb:/ipfs/QmX8bLZiRdtRTyYhjaL4ZUvySwLmottyFfm4noZwCPfDHh"
+				"bzz-raw://609f017c5ed0c831dab7f1eef21b1ce6dee7b25d8c1f49466b364d5e036816ac",
+				"dweb:/ipfs/QmXD6c5kmcXV2BX7uiXvyfqjY6S7w3k4WJWmZqipJPbrJT"
 			]
 		},
 		"backEnd/contracts/utility_token-interface.sol": {
