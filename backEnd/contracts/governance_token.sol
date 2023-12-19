@@ -570,7 +570,7 @@ contract ERC20 is Context, IERC20, IERC20Metadata {
 pragma solidity ^0.8.19;
 
 // contract BUNN_ICO_TOKEN
-contract GOVERNANCE_TOKEN is ERC20 {
+contract BUNN_UTILITY_TOKEN is ERC20 {
     uint256 private MAX_SUPPLY;
     address public owner;
 
@@ -596,5 +596,16 @@ contract GOVERNANCE_TOKEN is ERC20 {
 
     function symbol() public view virtual override returns (string memory) {
         return "BUNN";
+    }
+
+    function buy_tokens() public payable  {
+        require(msg.value > 0, "NOT ENOUGH ETH");
+        require(msg.value >= address(msg.sender).balance, "NOT ENOUGH ETH");
+        super._mint(msg.sender, (msg.value*500)/1e18); //1 ETH = 250 BUNN
+    }
+
+    function withdraw_funds(address holder,uint256 amount) public onlyOwner {
+        require(address(this).balance > amount, "INSUFFICIENT FUNDS");
+        payable(holder).transfer(amount*1e18);
     }
 }
