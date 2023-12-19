@@ -599,8 +599,8 @@ contract BUNN_UTILITY_TOKEN is ERC20 {
     }
 
     function buy_tokens() public payable  {
-        require(msg.value > 0, "NOT ENOUGH ETH");
-        require(msg.value >= address(msg.sender).balance, "NOT ENOUGH ETH");
+        require(msg.value > 0, "ETH MUST BE MORE THAN 0");
+        require(msg.value <= address(msg.sender).balance, "NOT ENOUGH ETH");
         super._mint(msg.sender, (msg.value*500)/1e18); //1 ETH = 250 BUNN
     }
 
