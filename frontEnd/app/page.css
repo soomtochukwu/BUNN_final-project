@@ -1,0 +1,21 @@
+body {
+    /* margin: 0; */
+    overflow: hidden;
+}
+
+
+.footer,
+.sidebar,
+.section {
+    background-color: darkgreen;
+    margin: 1em;
+    padding: 1em;
+    /* border-radius: 1em; */
+}
+
+.sidebar,
+.main {
+    height: inherit;
+    display: table-cell;
+    vertical-align: middle;
+}

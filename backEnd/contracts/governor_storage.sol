@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity ^0.8.19;
 
-contract governor_storage  {
+contract governor_storage {
     /**************************
     Section 0: External resources 
 
     *************************/
     address public utility_token_address;
     uint256 public returned;
-    address public logic_contrcat;
+    address public logic_contract;
 
     /**************************
     Section A: State Variables 
@@ -55,9 +55,9 @@ contract governor_storage  {
         bool voted;
         uint256 voting_power;
     }
-    mapping(address => mapping (uint => ballot)) public ballots;
+    mapping(address => mapping(uint => ballot)) public ballots;
 
-    struct vote{
+    struct vote {
         uint256 for_votes;
         uint256 against_votes;
     }
