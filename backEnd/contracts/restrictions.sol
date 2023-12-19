@@ -20,7 +20,7 @@ contract Restrictions {
     `comparison` is the represents the quantity `target` is being validated with.
     it returns a boolean if the quorum is high enough.
 
-    the quorum i have chosen is 60%.
+    the quorum I have chosen is 60%.
     */
     function quorum(
         uint256 target,

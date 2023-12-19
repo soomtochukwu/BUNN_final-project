@@ -76,7 +76,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"backEnd/contracts/BUNN_Governor_Implementation.sol": "IMPLEMENTATION_CONTRACT"
+			"backEnd/contracts/Implementation-test.sol": "IMPLEMENTATION_CONTRACT"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -90,7 +90,7 @@
 		"remappings": []
 	},
 	"sources": {
-		"backEnd/contracts/BUNN_Governor_Implementation.sol": {
+		"backEnd/contracts/Implementation-test.sol": {
 			"keccak256": "0xf4605a1a670392e24f17b9455bb2f7f2b3eca8b73b7dbcde0d4189b215c02330",
 			"license": "SEE LICENSE IN LICENSE",
 			"urls": [
