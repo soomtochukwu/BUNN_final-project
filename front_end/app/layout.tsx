@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 const inter = Inter({ subsets: ["latin"] });
 const navlinks = [
+  { name: "Home", href: "/" },
   { name: "Discuss", href: "/discussion" },
   { name: "Proposals", href: "/proposals" },
   { name: "Portal", href: "/portal" },
@@ -19,6 +20,11 @@ export default function RootLayout({
   const pathName = usePathname();
   return (
     <html>
+      <head>
+        <title>
+          BUNN DAO | TEAM-B
+        </title>
+      </head>
       <body className={inter.className}>
         <div>
           <header className="p-6 bg-green-700 text-center text-2xl font-mono font-bold">
@@ -27,7 +33,7 @@ export default function RootLayout({
 
           <div className="text-center p-3">
             {navlinks.map((link) => {
-              const isActive = pathName.startsWith(link.href);
+              const isActive = (pathName == link.href);
               return (
                 <Link
                   href={link.href}
@@ -44,7 +50,7 @@ export default function RootLayout({
           </div>
         </div>
 
-        <div className="bg-green-100 text-black h-screen">{children}</div>
+        <div className="bg-green-100 text-black">{children}</div>
 
         <div className="bottom-0 bg-green-700 text-center p-6">
           <footer>
