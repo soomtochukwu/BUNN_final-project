@@ -1,6 +1,7 @@
+import "./page.css"
 export default function about() {
     return (
-        <div className="bg-slate-300 mx-40 py-4 border-2 rounded-2xl p-3 ">
+        <p className="bg-green-200 py-4 border-2 rounded-2xl p-3 max-w-4xl mx-auto">
             dBUNN - BUNN DApp MVP for Decentralized Autonomous Organizations (DAOs)
             <br />
             Key Technologies:
@@ -60,8 +61,11 @@ export default function about() {
             13. Maintenance/Bug fixing: Maintenance through Smart contract
             upgradability.
             <br />
-            Signed Favor Lawrence Somtochukwu Kelechi Onwuajuese Franklin Ugwuoke
+            Signed
+            <br />Favor Lawrence
+            <br />Somtochukwu Kelechi Onwuajuese
+            <br />Franklin Ugwuoke
             <br />
-        </div>
+        </p>
     );
 }

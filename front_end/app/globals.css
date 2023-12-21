@@ -18,10 +18,49 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+}
+
+.body {
+  height: 100vh;
+}
+
+* {
+  transition: .2s;
+}
+
+.body {
+  /* background-color: red; */
+  min-height: 100vh;
+}
+
+.children {
+  min-height: 100vh;
+  background-image: url("./assets/background_image.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.loading-page {
+  /* background-image: url("./assets/loading.gif"); */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.7);
+  /* background-color: red; */
+}
+
+.footer>* {
+  color: rgb(215, 247, 215);
+}
+
+.navs {
+  border-right: 2px solid rgb(39, 133, 39);
+}
+
+.navs:last-of-type {
+  border-right: 0;
 }
