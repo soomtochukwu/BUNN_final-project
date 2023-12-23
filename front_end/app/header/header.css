@@ -1,0 +1,35 @@
+@media screen and (max-width: 900px) {
+
+    .menu {
+        display: block;
+        position: fixed;
+        right: 0;
+        border: 1px solid green;
+
+    }
+
+    .menu:hover~.drop-nav {
+        display: block;
+    }
+
+    .default-nav {
+        display: none;
+    }
+
+    .drop-nav {
+        background-color: rgba(0, 100, 0, 1);
+        padding: 3em;
+    }
+
+    .drop-nav:hover {
+        display: block;
+        position: fixed;
+        top: 0;
+        right: 0;
+        /* margin: 1em; */
+    }
+
+    .drop-nav:hover~.menu {
+        display: none;
+    }
+}
