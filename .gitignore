@@ -1,4 +1,4 @@
 .vscode
-.git
 .deps
 rainbow_kit
+.vercel
