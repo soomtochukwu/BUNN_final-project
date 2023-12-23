@@ -13,17 +13,17 @@ const navlinks = [
 export const Header = () => {
     const pathName = usePathname();
     return (
-        <header className="sticky top-0 flex items-center backdrop-blur-lg">
+        <header className="sticky p-2 header top-0 flex items-center backdrop-blur-lg">
             <Image
-                className="m-3 inline "
+                className="inline "
                 src="/header/bunn-dao-logo.png" // Path relative to the public directory
                 alt="Bunn DAO Logo"
-                width={80}
-                height={80}
+                width={70}
+                height={70}
             />
-            <span className="menu hidden inline rounded-xl px-3 m-3 ml-auto">menu</span>
+            <span className="menu hidden inline rounded-xl px-3 ml-auto">menu</span>
 
-            <nav className="default-nav inline m-3 ml-auto">
+            <nav className="default-nav inline ml-auto">
 
                 {navlinks.map((link) => {
                     const isActive = pathName == link.href;
@@ -41,7 +41,7 @@ export const Header = () => {
                     );
                 })}
             </nav>
-            <nav className="drop-nav hidden inline m-3 ml-auto">
+            <nav className="drop-nav hidden inline ml-auto">
                 {navlinks.map((link) => {
                     const isActive = pathName == link.href;
                     return (
