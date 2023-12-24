@@ -1,6 +1,7 @@
 "use client";
 
 import "./globals.css";
+import "./scroll-bar.css"
 import { Header } from "./header/header";
 
 export default function RootLayout({
@@ -18,7 +19,7 @@ export default function RootLayout({
 
         <div className="children bg-green-100 text-black">{children}</div>
 
-        <div className="bottom-0 bg-green-700 text-center p-6">
+        <div className="bottom-0 bg-green-900 text-center p-6">
           <footer className="footer text-black">
             Created by <br />
             <a

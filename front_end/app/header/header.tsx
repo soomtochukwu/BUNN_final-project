@@ -15,13 +15,13 @@ export const Header = () => {
     return (
         <header className="sticky p-2 header top-0 flex items-center backdrop-blur-lg">
             <Image
-                className="inline "
+                className="inline ml-3"
                 src="/header/bunn-dao-logo.png" // Path relative to the public directory
                 alt="Bunn DAO Logo"
                 width={70}
                 height={70}
             />
-            <span className="menu hidden inline rounded-xl px-3 ml-auto">menu</span>
+            <span className="menu hidden inline rounded-xl px-3 py-1 ml-auto mr-3">menu</span>
 
             <nav className="default-nav inline ml-auto">
 
@@ -48,7 +48,7 @@ export const Header = () => {
                         <Link
                             href={link.href}
                             key={link.name}
-                            className=" border-2 m-4"
+                            className="block p-3 hover:bg-green-900 m-2"
                         >
                             {link.name}
                             <br />

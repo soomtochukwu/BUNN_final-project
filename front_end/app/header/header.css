@@ -16,7 +16,7 @@
         display: block;
         position: fixed;
         right: 0;
-        border: 1px solid green;
+        border: 1px solid rgb(170, 235, 170);
 
     }
 
@@ -28,9 +28,20 @@
         display: none;
     }
 
+    .drop-nav>* {
+        border-bottom: 0.1px solid gray;
+    }
+
+    .drop-nav>*:last-child {
+        border-bottom: 0;
+    }
+
     .drop-nav {
-        background-color: rgba(0, 100, 0, 1);
-        padding: 3em;
+        background-color: black;
+        padding: 1em;
+        height: 600px;
+        width: 400px;
+        max-width: 80vw;
         position: fixed;
         top: 0;
         right: 0;
@@ -40,6 +51,7 @@
         display: block;
         /* margin: 1em; */
     }
+
 
     .drop-nav:hover~.menu {
         display: none;
