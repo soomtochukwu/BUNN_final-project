@@ -48,7 +48,8 @@ export const Header = () => {
                         <Link
                             href={link.href}
                             key={link.name}
-                            className="block p-3 hover:bg-green-900 m-2"
+                            className="block p-3 w-56
+                            hover:text-green-500 m-2"
                         >
                             {link.name}
                             <br />
