@@ -14,7 +14,7 @@ export default function RootLayout({
       <head>
         <title>BUNN DAO | TEAM-B</title>
       </head>
-      <body className={"" + " body"}>
+      <body className="body ">
         <Header />
 
         <div className="children bg-green-100 text-black">{children}</div>

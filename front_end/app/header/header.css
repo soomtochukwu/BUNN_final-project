@@ -1,5 +1,10 @@
 .header {
     background-color: rgba(0, 0, 0, .3);
+
+    border-bottom-right-radius: 1.5em;
+    border-bottom-left-radius: 1.5em;
+    max-width: 80vw;
+    margin: auto;
 }
 
 .navs {

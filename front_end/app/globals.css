@@ -27,6 +27,8 @@ body {
   height: 100vh;
 }
 
+.children {}
+
 * {
   transition: .4s;
 }
