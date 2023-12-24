@@ -32,7 +32,7 @@ export const Header = () => {
                             href={link.href}
                             key={link.name}
                             className={
-                                "navs inline-block w-32 bg-green-950 active:bg-green-900 hover:bg-black p-3 " +
+                                "navs inline-block w-28  active:bg-green-950 hover:bg-green-900 text-center py-2 " +
                                 (isActive ? " font-bold text-green-500 " : "")
                             }
                         >

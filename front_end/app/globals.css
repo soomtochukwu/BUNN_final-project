@@ -56,11 +56,3 @@ body {
 .footer>* {
   color: rgb(215, 247, 215);
 }
-
-.navs {
-  border-right: 2px solid rgb(39, 133, 39);
-}
-
-.navs:last-of-type {
-  border-right: 0;
-}

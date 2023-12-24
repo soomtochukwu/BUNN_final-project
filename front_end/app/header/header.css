@@ -2,6 +2,14 @@
     background-color: rgba(0, 0, 0, .3);
 }
 
+.navs {
+    border-right: 2px solid rgb(71, 71, 71);
+}
+
+.navs:last-of-type {
+    border-right: 0;
+}
+
 @media screen and (max-width: 900px) {
 
     .menu {
