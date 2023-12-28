@@ -1,6 +1,10 @@
 
 export default function proposal() {
     return (
-        <div>Make Proposals here</div>
+        <>
+            <div>
+                oboy
+            </div>
+        </>
     )
 }

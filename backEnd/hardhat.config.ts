@@ -5,7 +5,6 @@ require("hardhat-deploy");
 require("dotenv").config();
 const config = {
   solidity: "0.8.20",
-  defaultNetwork: "sepolia",
   networks: {
     sepolia: {
       url: process.env.SEPOLIA_URL,
