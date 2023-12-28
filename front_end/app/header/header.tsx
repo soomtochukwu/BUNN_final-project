@@ -3,6 +3,11 @@ import "./header.css"
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
+
+import {
+    ConnectButton,
+} from '@rainbow-me/rainbowkit';
+
 const navlinks = [
     { name: "Home", href: "/" },
     { name: "Discuss", href: "/discussion" },
@@ -21,6 +26,11 @@ export const Header = () => {
                 width={70}
                 height={70}
             />
+            <ConnectButton
+                label='Connect'
+                showBalance={false}
+                accountStatus="avatar"
+            />
             <span className="menu hidden inline rounded-xl px-3 py-1 ml-auto mr-3">menu</span>
 
             <nav className="default-nav inline ml-auto">
@@ -33,7 +43,7 @@ export const Header = () => {
                             key={link.name}
                             className={
                                 "navs inline-block w-28  active:bg-green-950 hover:bg-green-900 text-center py-2 " +
-                                (isActive ? " font-bold text-green-500 " : "")
+                                (isActive ? " font-bold text-green-700 " : "")
                             }
                         >
                             {link.name}

@@ -574,7 +574,7 @@ contract BUNN_UTILITY_TOKEN is ERC20 {
     uint256 private MAX_SUPPLY;
     address public owner;
 
-    constructor() ERC20("BUNN_DAO", "BDAO") {
+    constructor() ERC20("BUNN_UTILITY_TOKEN", "BUNN") {
         owner = msg.sender;
         MAX_SUPPLY = 10_000_000_000 * (10 ** decimals());
     }
@@ -598,14 +598,14 @@ contract BUNN_UTILITY_TOKEN is ERC20 {
         return "BUNN";
     }
 
-    function buy_tokens() public payable  {
+    function buy_tokens() public payable {
         require(msg.value > 0, "ETH MUST BE MORE THAN 0");
         require(msg.value <= address(msg.sender).balance, "NOT ENOUGH ETH");
-        super._mint(msg.sender, (msg.value*500)/1e18); //1 ETH = 250 BUNN
+        super._mint(msg.sender, (msg.value * 500) / 1e18); //1 ETH = 250 BUNN
     }
 
-    function withdraw_funds(address holder,uint256 amount) public onlyOwner {
+    function withdraw_funds(address holder, uint256 amount) public onlyOwner {
         require(address(this).balance > amount, "INSUFFICIENT FUNDS");
-        payable(holder).transfer(amount*1e18);
+        payable(holder).transfer(amount * 1e18);
     }
 }
