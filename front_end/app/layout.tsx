@@ -5,11 +5,6 @@ import "./scroll-bar.css"
 import { Header } from "./header/header";
 
 
-
-
-
-
-
 import '@rainbow-me/rainbowkit/styles.css';
 
 import {
@@ -33,7 +28,6 @@ import {
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import { useState } from 'react'
-import { abi } from './abi'
 
 const { chains, publicClient } = configureChains(
   [mainnet, polygon, optimism, arbitrum, sepolia],
