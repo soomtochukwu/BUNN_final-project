@@ -1,3 +1,9 @@
+<div>
+  <a href="/">
+    <img align="right" alt="BlochainUNN logo" src="https://blockchainunn.org/images/navLogo.png" width="100%" height="400" />
+  </a>
+</div>
+
 # BUNNDAO 🌎
 
 BUNNDAO is a decentralized autonomous organization that aims to create a community-driven platform for funding and support social impact projects in UNN tech space. 🙌
