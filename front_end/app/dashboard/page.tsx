@@ -52,6 +52,13 @@ const
         return (
             <div className='bg-red-300 max-w-4xl mx-auto'>
                 <br />
+                <div>
+                    Contracts can only be implemented once
+                    <br />
+                    Once canceled, it cannot bee implemented
+                    <br />
+                    only admins can add or remove an admin
+                </div>
                 <div className='m-2 bg-green-800 rounded-2xl'>
 
                     <input
