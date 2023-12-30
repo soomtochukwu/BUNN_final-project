@@ -30,7 +30,7 @@ body {
 .children {}
 
 * {
-  transition: .4s;
+  transition: .2s;
 }
 
 .body {
@@ -57,4 +57,13 @@ body {
 
 .footer>* {
   color: rgb(215, 247, 215);
+}
+
+ol {
+  padding: 1em;
+  list-style-type: disc;
+}
+
+p {
+  background-color: rgba(0, 0, 0, .3);
 }
