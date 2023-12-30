@@ -1,6 +1,6 @@
 <div>
   <a href="/">
-    <img align="right" alt="myyyyyyyyyyyyyyyy" src="https://blockchainunn.org/images/navLogo.png" width="100%" height="400" />
+    <img align="right" alt="BlochainUNN logo" src="https://blockchainunn.org/images/navLogo.png" width="100%" height="400" />
   </a>
 </div>
 
