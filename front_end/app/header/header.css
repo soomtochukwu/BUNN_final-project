@@ -5,9 +5,12 @@
     border-bottom-left-radius: 1.5em;
     max-width: 90vw;
     margin: auto;
+    font-size: calc(.8em + .5vw);
 }
 
 .navs {
+    /* padding: 0; */
+    width: 5em;
     border-right: 2px solid rgb(71, 71, 71);
 }
 
@@ -61,4 +64,8 @@
     .drop-nav:hover~.menu {
         display: none;
     }
+}
+
+.buy {
+    text-align: center;
 }

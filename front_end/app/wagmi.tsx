@@ -32,7 +32,7 @@ import {
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 import { publicProvider } from 'wagmi/providers/public';
 import { useState } from 'react'
-import { abi } from './abi'
+import { abi } from './var'
 
 const { chains, publicClient } = configureChains(
     [mainnet, polygon, optimism, arbitrum, sepolia],

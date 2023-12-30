@@ -136,6 +136,10 @@ contract BUNN_GOVERNOR is governor_storage, Restrictions {
         logic_contract = upgraded_logic_contract;
     }
 
+    function UPGRADE_UTA(address upgraded_utility_token) public onlyAdmin {
+        utility_token_address = upgraded_utility_token;
+    }
+
     modifier onlyAdmin() {
         require(admin[msg.sender].is_admin, "ACCESS DENIED!");
         _;
