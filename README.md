@@ -64,8 +64,15 @@ Encoding external function calls gave me the ability to invoke another contract,
 
 Mentor – Mr. Stanley 
 
-Team Members – Somtochukwu 
+Team Members
+<a href="https://github.com/soomtochukwu">
+Somtochukwu
+</a>
 
-		- Favour 
+<a href="https://github.com/favxlaw">
+Favour
+</a>
 
-		- Frank 
+<a href="https://github.com/frankcodedKing">
+Frank
+</a>
