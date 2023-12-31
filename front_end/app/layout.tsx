@@ -82,7 +82,7 @@ export default function RootLayout({
               <footer className="footer text-black">
                 Created by <br />
                 <a
-                  href="https://github.com/soomtochukwu"
+                  href="https://linktr.ee/somtochukwu1"
                   target="Somtochukwu"
                   className="hover:border-l-2 p-2 border-black active:bg-green-900"
                 >
@@ -98,11 +98,11 @@ export default function RootLayout({
                 </a>
                 <br />
                 <a
-                  href=""
+                  href="https://github.com/frankcodedKing"
                   target="Franklin"
                   className="hover:border-l-2 p-2 border-black active:bg-green-900"
                 >
-                  Franklin
+                  Frank
                 </a>
               </footer>
             </div>

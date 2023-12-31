@@ -8,12 +8,34 @@ export default function Home() {
       <div className="landing h-screen mx-auto flex flex-wrap flex-column justify-center items-center">
         <h1 className="motto text-center w-fit mx-auto p-3 font-bold text-green-600 font-mono ">
           BlockchainUNN DAO
-          <span className=" text-sm flex left " >
-            by TEAM B
+          <span className="contributors flex items-center text-sm left " >
+            by TEAM B |<a
+                  className="text-green-200"
+                  href="https://linktr.ee/somtochukwu1"
+                  target="Somtochukwu"
+                >
+                  Somtochukwu
+                </a>
+                |
+                <a
+                  className="text-green-200"
+                  href="https://github.com/favxlaw"
+                  target="Favour"
+                >
+                  Favour
+                </a>
+                |
+                <a
+                  className="text-green-200"
+                  href="https://github.com/frankcodedKing"
+                  target="Franklin"
+                >
+                  Frank
+                </a>
           </span>
         </h1>
         <p className="max-w-6xl font-bold motto-details mx-auto">
-          A dAPP for <a href="https://blockchainunn.org/" target="BUNN" className="text-green-500">BlockchainUNN</a> created in partial fulfillment of the requirements to be a certified BUNN web3 developer.
+          A dAPP for <a href="https://blockchainunn.org/" target="BUNN" className="text-green-500">BlockchainUNN</a> created in partial fulfillment of the requirements to be a certified <a href="https://blockchainunn.org/" target="BUNN" className="text-green-500">BlockchainUNN</a> <span className="text-green-200">web3</span> developer.
         </p>
 
       </div>
