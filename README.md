@@ -68,11 +68,11 @@ Team Members
 <a href="https://github.com/soomtochukwu">
 Somtochukwu
 </a>
-
+|
 <a href="https://github.com/favxlaw">
 Favour
 </a>
-
+|
 <a href="https://github.com/frankcodedKing">
 Frank
 </a>
