@@ -6,7 +6,7 @@ import "../globals.css"
 import React, { useState } from 'react'
 import { readContract, writeContract, getAccount } from "@wagmi/core";
 
-import { governor_abi, governor_address } from '../var';
+import { governor_abi, governor_address, utility_token_abi, utility_token_address } from '../var';
 import { parseEther } from 'viem';
 const
     Admin = () => {
@@ -68,6 +68,17 @@ const
                     functionName: "removeAdmin",
                     args: [target_admin_address]
                 })
+            },
+            withdraw_funds = async () => {
+                const funds = await writeContract({
+                    address:utility_token_address,
+                    abi:utility_token_abi,
+                    functionName:"withdraw_funds",
+                    args:[
+                        target_admin_address,
+                        amount
+                    ]
+                })
             }
             ;
 
@@ -111,6 +122,37 @@ const
 
                     <button type="button" onClick={implement_topic}>
                         Implement Topic
+                    </button>
+
+                </div>
+
+
+                <div className='instructions'>
+                    <div>
+                        To withdraw funds / ETH from the utility token contract
+                    </div>
+                    <div>
+                        Enter the amount of ETH and address you want the funds to be transferred to in the fields bellow
+                    </div>
+                </div>
+
+                <div className='m-2 propose rounded-2xl'>
+
+                    <input
+                        type="text"
+                        placeholder='Address'
+                        value={target_admin_address}
+                        onChange={_setTargetAdminAddress}
+                    />
+
+                    <input
+                        type="number"
+                        placeholder='Amount of ETH. eg., 1 ETH'
+                        value={amount}
+                        onChange={_setAmount}
+                    />
+                    <button type="button" onClick={withdraw_funds}>
+                        Withdraw Funds
                     </button>
 
                 </div>
