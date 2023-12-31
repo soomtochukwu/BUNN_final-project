@@ -1,7 +1,5 @@
-<div>
+<img align="right" alt="BlochainUNN logo" src="https://bunn-dao.vercel.app/_next/image?url=%2Fheader%2Fbunn-dao-logo.png&w=256&q=75" width="100%" height="400" /> 
 
-    <img align="right" alt="BlochainUNN logo" src="https://bunn-dao.vercel.app/_next/image?url=%2Fheader%2Fbunn-dao-logo.png&w=256&q=75" width="100%" height="400" /> 
-</div> 
 
   
 
