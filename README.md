@@ -24,10 +24,6 @@ It is powered by Ethereum (currenty sepolia test net), Solidity, React, nextJS,
 
 A DAO is a member-owned community without centralized leadership that is governed by computer code. DAOs use blockchain technology to provide a secure and transparent ledger to track the activities and funds of the organization. DAOs allow anyone to join and participate in the decision-making process, without the need for intermedaries or authorities. 💯..... Nice yeah? 😉 
 
-  
-
-  
-
 ## How Does BUNNDAO work?  
 
 - Anyone can join BUNNDAO by stacking a minimum amount of our tokens, staking our tokens grant voting rights and access to the DAO treasury. 💰 
@@ -52,7 +48,7 @@ I actually faced a lot of challenges but right now am happy that the dAPP is rea
 
 ## Problems its solved  
 
-Somtochukwu 
+Somtochukwu:
 
 Being able to convert inputs and outputs into the right data type made the app function as expected  
 
