@@ -1,5 +1,7 @@
 "use client"
 
+import "../globals.css"
+
 import React, { useState } from 'react'
 import {
     readContract,
@@ -53,17 +55,20 @@ const
 
         ShowBalance();
         return (
-            <div className='my-auto mx-auto max-w-4xl'>
-                <p>
-                    Welcome!
-                    <br />
-                    1 ETH = 250 BUNN (experimental rate)
-                    Your voting power is equal to the quantity of BUNN you hold
-                </p>
-                <div>
+            <div className='max-w-6xl text-center mx-auto '>
+                <div className="instructions max-w-6xl mx-auto">
+                    <div>
+                        Welcome!
+                    </div>
+                    <div>
+                        1 ETH = 250 BUNN (experimental rate)
+                        Your voting power is equal to the quantity of BUNN you hold
+                    </div>
+                </div>
+                <div className="bg-black max-w-6xl p-3 text-white">
                     You currently hold <b> {balance} BUNN</b>
                 </div>
-                <div>
+                <div className="propose">
                     <input
                         type="text"
                         value={amount}

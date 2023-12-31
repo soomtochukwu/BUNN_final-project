@@ -1,20 +1,26 @@
 "use client"
 
+import "./dashboard.css"
+import "../globals.css"
 
 import React, { useState } from 'react'
 import { readContract, writeContract, getAccount } from "@wagmi/core";
 
-import { governor_abi, governor_address } from '../var';
+import { governor_abi, governor_address, utility_token_abi, utility_token_address } from '../var';
 import { parseEther } from 'viem';
 const
     Admin = () => {
         const
             [amount, setAmount] = useState(""),
             [topic_id, setTopId] = useState(""),
+            [target_admin_address, setTargetAdminAddress] = useState(""),
             [override, setOverride] = useState(""),
 
             _setAmount = (event: any) => {
                 setAmount(event.target.value)
+            },
+            _setTargetAdminAddress = (event: any) => {
+                setTargetAdminAddress(event.target.value)
             },
             _setTopId = (event: any) => {
                 setTopId(event.target.value)
@@ -46,11 +52,38 @@ const
                     ],
                     value: parseEther(amount)
                 })
+            },
+            add_admin = async () => {
+                const hash = writeContract({
+                    address: governor_address,
+                    abi: governor_abi,
+                    functionName: "addAdmin",
+                    args: [target_admin_address]
+                })
+            },
+            remove_admin = async () => {
+                const hash = writeContract({
+                    address: governor_address,
+                    abi: governor_abi,
+                    functionName: "removeAdmin",
+                    args: [target_admin_address]
+                })
+            },
+            withdraw_funds = async () => {
+                const funds = await writeContract({
+                    address:utility_token_address,
+                    abi:utility_token_abi,
+                    functionName:"withdraw_funds",
+                    args:[
+                        target_admin_address,
+                        amount
+                    ]
+                })
             }
             ;
 
         return (
-            <div className='text-center max-w-6xl mx-auto'>
+            <div className='dashboard max-w-6xl mx-auto'>
                 <br />
                 <div className='instructions'>
                     <div>
@@ -63,6 +96,7 @@ const
                         only admins can add or remove an admin
                     </div>
                 </div>
+
                 <div className='m-2 propose rounded-2xl'>
 
                     <input
@@ -91,6 +125,44 @@ const
                     </button>
 
                 </div>
+
+
+                <div className='instructions'>
+                    <div>
+                        To withdraw funds / ETH from the utility token contract
+                    </div>
+                    <div>
+                        Enter the amount of ETH and address you want the funds to be transferred to in the fields bellow
+                    </div>
+                </div>
+
+                <div className='m-2 propose rounded-2xl'>
+
+                    <input
+                        type="text"
+                        placeholder='Address'
+                        value={target_admin_address}
+                        onChange={_setTargetAdminAddress}
+                    />
+
+                    <input
+                        type="number"
+                        placeholder='Amount of ETH. eg., 1 ETH'
+                        value={amount}
+                        onChange={_setAmount}
+                    />
+                    <button type="button" onClick={withdraw_funds}>
+                        Withdraw Funds
+                    </button>
+
+                </div>
+
+                <div className='instructions'>
+                    <div>
+                        To cancel a topic, enter the <i>Topic ID</i> into the Topic ID field below
+                    </div>
+                </div>
+
                 <div className='m-2 propose  rounded-2xl'>
                     <input
                         type="number"
@@ -101,6 +173,49 @@ const
 
                     <button type="button" onClick={cancel_topic}>
                         Cancel Topic
+                    </button>
+                </div>
+
+                <div className='instructions'>
+                    <div>
+                        To add an admin, enter their address bellow
+                    </div>
+                    <div>
+                        For a new member to become an admin,
+                        all existing admins must add them
+                    </div>
+                </div>
+
+                <div className='propose'>
+                    <input
+                        type="text"
+                        placeholder='New Admin Address'
+                        value={target_admin_address}
+                        onChange={_setTargetAdminAddress}
+                    />
+                    <button type="button" onClick={add_admin}>
+                        Add new Admin
+                    </button>
+                </div>
+
+                <div className='instructions'>
+                    <div>
+                        To remove an admin, enter their address bellow
+                    </div>
+                    <div>
+                        All existing admins must remove them in oder to demote them
+                    </div>
+                </div>
+
+                <div className='propose'>
+                    <input
+                        type="text"
+                        placeholder='Demote Admin Address'
+                        value={target_admin_address}
+                        onChange={_setTargetAdminAddress}
+                    />
+                    <button type="button" onClick={remove_admin}>
+                        Remove Admin
                     </button>
                 </div>
             </div>

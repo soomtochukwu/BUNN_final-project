@@ -9,7 +9,7 @@ import { getAccount, readContract } from "@wagmi/core";
 import {
     ConnectButton,
 } from '@rainbow-me/rainbowkit';
-import { utility_token_abi, utility_token_address } from "../var";
+import { governor_abi, governor_address, utility_token_abi, utility_token_address } from "../var";
 import { useState } from "react";
 
 const navlinks = [
@@ -23,6 +23,7 @@ export const Header = () => {
     const
         pathName = usePathname(),
         [balance, setBalance] = useState(0),
+        [Admin, setAdmin] = useState(false),
 
         ShowBalance = async () => {
             const _balance = await readContract({
@@ -32,8 +33,18 @@ export const Header = () => {
                 args: [getAccount().address]
             });
             setBalance(Number(_balance))
-            console.log("_balance", _balance)
+        },
+        isAdmin = async () => {
+            const admin = await readContract({
+                address:governor_address,
+                abi:governor_abi,
+                functionName: "admin",
+                args:[getAccount().address]
+            });
+            // @ts-ignore
+            setAdmin(admin[0])
         };
+        isAdmin();
     ShowBalance();
     return (
         <header className="sticky p-2 header top-0 flex items-center backdrop-blur-lg">
@@ -78,7 +89,7 @@ export const Header = () => {
                     );
                 })}
                 {
-                    getAccount().address == "0x49f2451AbEe35B261bB01f9d0CDC49f8f8df6E3f"
+                    Admin == true
                         ?
                         <Link
                             href="/dashboard"
@@ -109,7 +120,7 @@ export const Header = () => {
                     );
                 })}
                 {
-                    getAccount().address == "0x49f2451AbEe35B261bB01f9d0CDC49f8f8df6E3f"
+                    Admin == true
                         ?
                         <Link
                             href="/dashboard"
@@ -118,7 +129,7 @@ export const Header = () => {
                                 "navs inline-block  active:bg-green-950 hover:bg-green-900 text-center font-bold text-green-700 "
                             }
                         >
-                            Dashboard
+                            Admin
                         </Link>
                         :
                         null
