@@ -27,9 +27,9 @@ body {
   height: 100vh;
 }
 
-.children {}
 
 * {
+  font-family: 'Courier New', Courier, monospace;
   transition: .2s;
 }
 
@@ -42,8 +42,8 @@ body {
   min-height: 100vh;
   background-image: url("/background_image.png");
   background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-position: top;
+  background-repeat: repeat-y;
 }
 
 .loading-page {
@@ -64,6 +64,59 @@ ol {
   list-style-type: disc;
 }
 
-p {
-  background-color: rgba(0, 0, 0, .3);
+/* className="intro" */
+.paragraph {
+  backdrop-filter: 3px;
+  padding: 0.5rem;
+  border-radius: 0.8rem;
+  margin: 0.6rem;
+  background-color: rgba(0, 0, 0, .5);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+@media (max-width: 1000px) {
+  .paragraph {
+    padding: 2em;
+    display: block;
+  }
+
+  .paragraph>* {
+    width: 100vw;
+    display: inline !important;
+  }
+}
+
+th {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+td {
+  padding: 2em;
+  background-color: rgba(0, 90, 0, 0.2);
+}
+
+.intro {
+  /* background-image: url("/intro-to-dao.png"); */
+}
+
+.governance {
+  /* background-image: url("/dao-governance.png"); */
+  color: rgb(214, 214, 214)
+}
+
+.landing {
+  background-image: url("/banner-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.motto {
+  font-size: calc(2rem + 4vw);
+}
+
+.motto-details {
+  font-size: calc(1rem + 1vw);
 }

@@ -55,39 +55,72 @@ const
         isMember();
 
         return (
-            <>
+            <div className="max-w-6xl mx-auto text-center">
                 {
                     is_member.includes("true")
                         ?
+                        <div>
 
-                        <div className="p-6">
-                            <input
-                                type="text"
-                                value={topic_id}
-                                placeholder="Topic ID"
-                                onChange={_setTopicId}
-                            />
-                            <br />
-                            <input
-                                type="string"
-                                value={supports}
-                                placeholder="support[: true or false]"
-                                onChange={_setSupport}
-                            />
-                            <button onClick={cast_vote}>
-                                cast vote
-                            </button>
+                            <div className="instructions">
+                                <div>
+                                    You must posses <b>BUNN utility tokens</b> to be an eligible voter
+                                </div>
+                                <div>
+                                    1 ETH is equal to 250 BUNN hence your voting power is multiple of ur balance and 250
+                                </div>
+                                <div>
+                                    In the <i>Topic ID</i> field
+                                    Enter the ID of the topic / proposal you want to vote for
+                                </div>
+                                <div>
+                                    In the <i>Supports</i> field, enter true if you are voting in favour of the proposal and vice versa
+                                </div>
+
+                            </div>
+                            <div className="p-4 propose">
+                                <input
+                                    type="text"
+                                    value={topic_id}
+                                    placeholder="Topic ID"
+                                    onChange={_setTopicId}
+                                />
+                                <br />
+                                <input
+                                    type="string"
+                                    value={supports}
+                                    placeholder="support[: true or false]"
+                                    onChange={_setSupport}
+                                />
+                                <button onClick={cast_vote}>
+                                    cast vote
+                                </button>
+                            </div>
                         </div>
                         :
 
-                        <div className="register">
-                            <input type="text" placeholder="name" onChange={_setName} />
-                            <button type="button" onClick={register}>
-                                register
-                            </button>
+                        <div className="mx-auto w-fit text-center">
+
+                            <b className="text-4xl">
+                                Welcome
+                            </b>
+                            <div className="instructions">
+                                <div>
+                                    You must be a registered to participate
+                                </div>
+                                <div>
+                                    To register, enter your username below and click register
+                                </div>
+                            </div>
+
+                            <div className="propose">
+                                <input type="text" placeholder="name" onChange={_setName} />
+                                <button type="button" onClick={register}>
+                                    register
+                                </button>
+                            </div>
                         </div>
                 }
-            </>
+            </div>
         )
     }
 
