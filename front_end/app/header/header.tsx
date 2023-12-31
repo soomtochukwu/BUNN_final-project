@@ -33,19 +33,18 @@ export const Header = () => {
                 args: [getAccount().address]
             });
             setBalance(Number(_balance))
-            console.log("_balance", _balance)
         },
         isAdmin = async () => {
-            const admin:any = await readContract({
+            const admin = await readContract({
                 address:governor_address,
                 abi:governor_abi,
                 functionName: "admin",
                 args:[getAccount().address]
             });
-            console.log("addmin", admin[0])
+            // @ts-ignore
             setAdmin(admin[0])
-            console.log("fin", Admin)
         };
+        isAdmin();
     ShowBalance();
     return (
         <header className="sticky p-2 header top-0 flex items-center backdrop-blur-lg">
