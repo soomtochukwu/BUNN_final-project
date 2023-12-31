@@ -50,16 +50,20 @@ const
             ;
 
         return (
-            <div className='bg-red-300 max-w-4xl mx-auto'>
+            <div className='text-center max-w-6xl mx-auto'>
                 <br />
-                <div>
-                    Contracts can only be implemented once
-                    <br />
-                    Once canceled, it cannot bee implemented
-                    <br />
-                    only admins can add or remove an admin
+                <div className='instructions'>
+                    <div>
+                        Contracts can only be implemented once
+                    </div>
+                    <div>
+                        Once canceled, it cannot bee implemented
+                    </div>
+                    <div>
+                        only admins can add or remove an admin
+                    </div>
                 </div>
-                <div className='m-2 bg-green-800 rounded-2xl'>
+                <div className='m-2 propose rounded-2xl'>
 
                     <input
                         type="number"
@@ -87,8 +91,7 @@ const
                     </button>
 
                 </div>
-                <br />
-                <div className='m-2 bg-green-800 rounded-2xl'>
+                <div className='m-2 propose  rounded-2xl'>
                     <input
                         type="number"
                         placeholder='Topic Id'

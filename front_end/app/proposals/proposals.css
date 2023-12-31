@@ -1,0 +1,47 @@
+.instructions {
+    display: block;
+    width: fit-content;
+}
+
+.instructions>* {
+    padding: 1em;
+    vertical-align: middle;
+    margin: 1em;
+    width: 25vw;
+    --tw-backdrop-blur: blur(40px);
+    backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+    background-color: rgba(0, 0, 0, 0.247);
+    height: 8em;
+    border-radius: 2em;
+    display: inline-block;
+}
+
+.wrap-instructions {
+    margin-left: auto;
+    text-align: center;
+    margin-right: auto;
+}
+
+@media (max-width: 1000px) {
+    .instructions>* {
+        height: 15em;
+        width: 40vw;
+        font-size: calc(.5em + 1vw);
+    }
+
+}
+
+.propose>* {
+    padding: 2em;
+    margin: 1em;
+}
+
+.propose>button {
+    background-color: rgb(0, 109, 42);
+    color: white;
+
+}
+
+.propose>button:active {
+    font-size: .9em;
+}

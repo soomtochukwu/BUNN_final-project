@@ -41,8 +41,8 @@ export const Header = () => {
                 className="inline ml-3"
                 src="/header/bunn-dao-logo.png" // Path relative to the public directory
                 alt="Bunn DAO Logo"
-                width={70}
-                height={70}
+                width={90}
+                height={90}
             />
 
             <div>
@@ -70,7 +70,7 @@ export const Header = () => {
                             key={link.name}
                             className={
                                 "navs inline-block  active:bg-green-950 hover:bg-green-900 text-center" +
-                                (isActive ? " font-bold text-green-700 " : "")
+                                (isActive ? " font-bold text-green-500 " : "")
                             }
                         >
                             {link.name}
