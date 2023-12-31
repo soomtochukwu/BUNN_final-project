@@ -46,6 +46,9 @@ Smart contract development: developing the smart contracts was never an easy job
 
 I actually faced a lot of challenges but right now am happy that the dAPP is ready, that is why i can only remember a few challenges 
 
+Favour 
+While working on the team DAOs, I faced some challenges that made it difficult for me to contribute as much as I would have liked. With exams and other commitments, I found it challenging to fully understand the DAOs and read the smart contracts in depth. I also struggled with finding relevant content for the post.
+
 ## Problems its solved  
 
 Somtochukwu:
@@ -54,7 +57,10 @@ Being able to convert inputs and outputs into the right data type made the app f
 
 Encoding external function calls gave me the ability to invoke another contract, hence, implementing decisions 
 
- 
+ Favour
+ However, I did my best to overcome these challenges by doing research on DAOs and smart contracts, seeking guidance from more experienced team members, and dedicating time to learning about the technology and its applications.
+Despite the difficulties, I gained a deeper understanding of DAOs and smart contracts, and learned valuable lessons about collaboration and problem-solving within a team. I hope to apply these lessons and contribute more to future projects.
+
 
 ## Contributors  
 
