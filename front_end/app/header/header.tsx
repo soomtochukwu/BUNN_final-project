@@ -23,6 +23,7 @@ export const Header = () => {
     const
         pathName = usePathname(),
         [balance, setBalance] = useState(0),
+        [Admin, setAdmin] = useState(false),
 
         ShowBalance = async () => {
             const _balance = await readContract({
@@ -35,16 +36,15 @@ export const Header = () => {
             console.log("_balance", _balance)
         },
         isAdmin = async () => {
-            const admin = await readContract({
+            const admin:any = await readContract({
                 address:governor_address,
                 abi:governor_abi,
                 functionName: "admin",
                 args:[getAccount().address]
             });
-            // @ts-ignore
             console.log("addmin", admin[0])
-            // @ts-ignore
-            return admin[0]
+            setAdmin(admin[0])
+            console.log("fin", Admin)
         };
     ShowBalance();
     return (
@@ -90,7 +90,7 @@ export const Header = () => {
                     );
                 })}
                 {
-                    Boolean(isAdmin()) == true
+                    Admin == true
                         ?
                         <Link
                             href="/dashboard"
@@ -99,7 +99,7 @@ export const Header = () => {
                                 "navs inline-block  active:bg-green-950 hover:bg-green-900 text-center font-bold text-green-700 "
                             }
                         >
-                            Admin
+                            Dashboard
                         </Link>
                         :
                         null
@@ -121,7 +121,7 @@ export const Header = () => {
                     );
                 })}
                 {
-                    String(isAdmin()).includes("true")
+                    Admin == true
                         ?
                         <Link
                             href="/dashboard"
