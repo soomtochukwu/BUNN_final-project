@@ -11,7 +11,7 @@ const config = {
       // @ts-ignore
       accounts: [process.env.PRIVATE_KEY],
       chainId: 11155111,
-      blockConfirmations: 5,
+      blockConfirmations: 6,
     }
   },
   etherscan: {

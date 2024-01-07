@@ -496,7 +496,7 @@ export const utility_token_abi = [
     },
 ];
 
-export const governor_address = "0x7Fc15E82Ed1d9cdee9cAcb798F36c4B5707CB7b0"
+export const governor_address = "0x18DD2b2b195565209aF92F123639fae323e31AEB";
 
-export const utility_token_address = "0xEC68485F7B57312abB999eDBa8Bb965D254cda9A"
-
+export const utility_token_address =
+    "0xA92CBB9380f9311D876477Fa78Ad1e00f61A858f";

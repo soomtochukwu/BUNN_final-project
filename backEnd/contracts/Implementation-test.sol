@@ -8,13 +8,13 @@ contract IMPLEMENTATION_CONTRACT {
     constructor() {}
 
     //functions signature ==> "function alterState(uint)"
-    function alterState() public payable  returns(uint ){
+    function alterState() public payable returns (uint) {
         val += msg.value;
         val /= 1e18;
         return val;
     }
 
-    function balance() public view returns (uint256){
+    function balance() public view returns (uint256) {
         return address(this).balance;
     }
 }
