@@ -48,6 +48,7 @@ export const Header = () => {
     ShowBalance();
     return (
         <header className="sticky p-2 header top-0 flex items-center backdrop-blur-lg">
+            <a href="/">
             <Image
                 className="inline ml-3"
                 src="/header/bunn-dao-logo.png" // Path relative to the public directory
@@ -55,6 +56,7 @@ export const Header = () => {
                 width={90}
                 height={90}
             />
+            </a>
 
             <div>
                 <ConnectButton
